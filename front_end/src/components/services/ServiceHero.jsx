@@ -42,6 +42,7 @@ const ServiceHero = () => {
           prefix="frame_5_"
           startFrame={86405}
           endFrame={89427}
+          step={3}
           className="w-full h-full"
         />
       </div>

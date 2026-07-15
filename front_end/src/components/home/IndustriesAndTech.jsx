@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import ImageSequence from '../common/ImageSequence';
 import { ScrollReveal } from './ScrollReveal';
 
@@ -38,9 +38,9 @@ const technologies = [
 const IndustriesAndTech = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleFrameChange = (frameIndex, totalFrames) => {
+  const handleFrameChange = useCallback((frameIndex, totalFrames) => {
     setActiveIndex(Math.floor((frameIndex / totalFrames) * technologies.length));
-  };
+  }, []);
 
   return (
     <section className="bg-[#111315] text-white border-t border-gray-900 border-b mt-10">

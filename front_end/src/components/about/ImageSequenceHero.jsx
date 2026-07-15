@@ -201,12 +201,35 @@ export default function ImageSequenceHero() {
       {/* Loading State */}
       {!imagesLoaded && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#050B16] z-20 transition-opacity duration-500">
-          <div className="text-sky-400 font-mono text-sm mb-4">LOADING SEQUENCE... {progress}%</div>
-          <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-sky-500 shadow-[0_0_10px_#3BA7FF] transition-all duration-300"
-              style={{ width: `${progress}%` }}
-            ></div>
+          {/* Circle progress ring */}
+          <div className="relative mb-5" style={{ width: 90, height: 90 }}>
+            <svg width="90" height="90" viewBox="0 0 90 90" style={{ transform: 'rotate(-90deg)' }}>
+              {/* Track */}
+              <circle cx="45" cy="45" r="38" fill="none" stroke="rgba(255,107,0,0.12)" strokeWidth="5" />
+              {/* Progress arc */}
+              <circle
+                cx="45" cy="45" r="38"
+                fill="none"
+                stroke="#ff6b00"
+                strokeWidth="5"
+                strokeLinecap="round"
+                strokeDasharray={`${2 * Math.PI * 38}`}
+                strokeDashoffset={`${2 * Math.PI * 38 * (1 - progress / 100)}`}
+                style={{
+                  transition: 'stroke-dashoffset 0.3s ease',
+                  filter: 'drop-shadow(0 0 6px rgba(255,107,0,0.7))'
+                }}
+              />
+            </svg>
+            {/* Center percent text */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span style={{ color: '#ff6b00', fontFamily: 'monospace', fontSize: 15, fontWeight: 700 }}>
+                {progress}%
+              </span>
+            </div>
+          </div>
+          <div style={{ color: '#ff6b00', fontFamily: 'monospace', fontSize: 13, letterSpacing: '0.1em' }}>
+            LOADING SEQUENCE...
           </div>
         </div>
       )}

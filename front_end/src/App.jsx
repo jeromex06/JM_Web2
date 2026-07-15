@@ -6,15 +6,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './App.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import LoadingScreen from './components/LoadingScreen'
 
 gsap.registerPlugin(ScrollTrigger);
 
 // Lazy load route components
-const Home = lazy(() => import('./pages/home/Home'))
+const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
 const Product = lazy(() => import('./pages/Product'))
 const Services = lazy(() => import('./pages/Services'))
-// const Sample = lazy(() => import('./pages/Sample'))
+const Contact = lazy(() => import('./pages/Contact'))
+
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -74,27 +76,33 @@ function ScrollToTopButton() {
 }
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   // Sync GSAP ScrollTrigger with Lenis
   useLenis(ScrollTrigger.update);
 
   return (
-    <ReactLenis root>
-      <div className="min-h-screen bg-black font-sans">
-        <ScrollToTop />
-        <Header />
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/Product" element={<Product />} />
-            <Route path="/services" element={<Services />} />
-            {/* <Route path="/sample" element={<Sample />} /> */}
-          </Routes>
-        </Suspense>
-        <Footer />
-        <ScrollToTopButton />
-      </div>
-    </ReactLenis>
+    <>
+      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+      <ReactLenis root>
+        <div className="min-h-screen bg-black font-sans">
+          <ScrollToTop />
+          <Header />
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/Product" element={<Product />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/contact" element={<Contact />} />
+
+            </Routes>
+          </Suspense>
+          <Footer />
+          <ScrollToTopButton />
+        </div>
+      </ReactLenis>
+    </>
   )
 }
 

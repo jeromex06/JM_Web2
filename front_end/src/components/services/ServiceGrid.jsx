@@ -1,14 +1,14 @@
 import React from 'react';
-import { 
-  Factory, 
-  Settings, 
-  Wrench, 
-  Building2, 
-  RefreshCw, 
-  Ruler, 
-  HardHat, 
-  Hammer, 
-  Truck 
+import {
+  Factory,
+  Settings,
+  Wrench,
+  Building2,
+  RefreshCw,
+  Ruler,
+  HardHat,
+  Hammer,
+  Truck
 } from 'lucide-react';
 
 const servicesList = [
@@ -86,7 +86,7 @@ const ServiceGrid = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-gray-200">
           {servicesList.map((service, index) => (
-            <div 
+            <div
               key={index}
               className="relative group bg-white p-10 border-r border-b border-gray-200 hover:shadow-2xl hover:z-10 transition-all duration-300 overflow-hidden cursor-pointer"
             >

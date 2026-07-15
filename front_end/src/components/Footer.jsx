@@ -29,17 +29,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services Links */}
-          {/* <div className="flex flex-col">
-            <h4 className="text-gray-500 font-bold uppercase tracking-widest text-xs mb-6">Services</h4>
-            <ul className="space-y-4 text-[13px] font-semibold text-gray-300">
-              <li><a href="#glass-partitions" className="hover:text-[#FF6B00] transition-colors">Glass Partitions</a></li>
-              <li><a href="#sliding-systems" className="hover:text-[#FF6B00] transition-colors">Sliding Systems</a></li>
-              <li><a href="#smart-glass" className="hover:text-[#FF6B00] transition-colors">Smart Tint Glass</a></li>
-              <li><a href="#custom-projects" className="hover:text-[#FF6B00] transition-colors">Custom Projects</a></li>
-            </ul>
-          </div> */}
-
           {/* Contact Info */}
           <div className="flex flex-col">
             <h4 className="text-gray-500 font-bold uppercase tracking-widest text-xs mb-6">Contact Us</h4>
@@ -63,10 +52,6 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-medium">
           <p>&copy; {new Date().getFullYear()} Jova Metcraft. All rights reserved.</p>
-          {/* <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-          </div> */}
         </div>
       </div>
     </footer>

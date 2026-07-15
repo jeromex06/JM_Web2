@@ -32,6 +32,7 @@ const Hero = () => {
   const canvasRef = useRef(null);
   const [activeTextIndex, setActiveTextIndex] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const [showText, setShowText] = useState(false);
 
   useGSAP(() => {
     if (frame1Urls.length === 0 || frameUrls.length === 0) return;
@@ -82,18 +83,24 @@ const Hero = () => {
           render(currentFrame);
 
           // Logic for text updates based on progress
-          const progress = currentFrame / totalImages;
-
-          if (progress > 0.95) {
-            setIsFinished(true);
-          } else {
+          if (currentFrame < frame1Urls.length) {
+            setShowText(false);
             setIsFinished(false);
-            if (progress < 0.3) {
-              setActiveTextIndex(0);
-            } else if (progress < 0.6) {
-              setActiveTextIndex(1);
+          } else {
+            setShowText(true);
+            const frameProgress = (currentFrame - frame1Urls.length) / frameUrls.length;
+
+            if (frameProgress > 0.95) {
+              setIsFinished(true);
             } else {
-              setActiveTextIndex(2);
+              setIsFinished(false);
+              if (frameProgress < 0.33) {
+                setActiveTextIndex(0);
+              } else if (frameProgress < 0.66) {
+                setActiveTextIndex(1);
+              } else {
+                setActiveTextIndex(2);
+              }
             }
           }
         }
@@ -115,27 +122,14 @@ const Hero = () => {
 
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-4">
           <div className="flex flex-col items-center justify-center text-center px-8 py-16 md:px-16 md:py-24 w-full max-w-4xl">
-            {!isFinished ? (
-              <div className="transition-opacity duration-500 ease-in-out">
-                <h1 className="text-5xl md:text-7xl font-bold tracking-[0.1em] uppercase mb-6 text-[#D4AF37] drop-shadow-lg">
-                  {contents[activeTextIndex]?.heading}
-                </h1>
-                <p className="text-xl md:text-3xl font-light tracking-wide text-white drop-shadow-md">
-                  {contents[activeTextIndex]?.paragraph}
-                </p>
-              </div>
-            ) : (
-              <div className="transition-opacity duration-700 ease-in-out">
-                <div className="transition-opacity duration-500 ease-in-out">
-                  <h1 className="text-5xl md:text-7xl font-bold tracking-[0.1em] uppercase mb-6 text-[#D4AF37] drop-shadow-lg">
-                    {contents[activeTextIndex]?.heading}
-                  </h1>
-                  <p className="text-xl md:text-3xl font-light tracking-wide text-white drop-shadow-md">
-                    {contents[activeTextIndex]?.paragraph}
-                  </p>
-                </div>
-              </div>
-            )}
+            <div className={`transition-opacity duration-700 ease-in-out flex flex-col items-center text-center ${showText && !isFinished ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              <h1 className="text-5xl md:text-7xl font-bold tracking-[0.1em] uppercase mb-6 text-[#D4AF37] drop-shadow-lg">
+                {contents[activeTextIndex]?.heading}
+              </h1>
+              <p className="text-xl md:text-3xl font-light tracking-wide text-white drop-shadow-md">
+                {contents[activeTextIndex]?.paragraph}
+              </p>
+            </div>
 
             <div className="absolute bottom-12 animate-bounce text-white/50 hidden md:block">
               <span className="text-xs uppercase tracking-widest block mb-2">Scroll</span>

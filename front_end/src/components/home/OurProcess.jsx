@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import GlassIcon from './GlassIcon';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,91 +60,143 @@ const stats = [
 
 const OurProcess = () => {
   const containerRef = useRef(null);
-  const processLineRef = useRef(null);
-  
+  const timelineLineRef = useRef(null);
+
   useGSAP(() => {
     // Parallax on title
-    gsap.fromTo(".process-title", 
+    gsap.fromTo(".process-title",
       { y: 100, opacity: 0 },
       { y: 0, opacity: 1, duration: 1, scrollTrigger: { trigger: containerRef.current, start: "top 80%" } }
     );
 
-    // Draw the process line as we scroll
-    gsap.fromTo(processLineRef.current,
-      { width: "0%" },
-      {
-        width: "100%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top center",
-          end: "bottom center",
-          scrub: true
-        }
-      }
-    );
+    // Setup timeline line length
+    const lineLength = timelineLineRef.current.getTotalLength();
+    gsap.set(timelineLineRef.current, {
+      strokeDasharray: lineLength,
+      strokeDashoffset: lineLength,
+    });
 
-    // Fade in process steps with a scrub
-    gsap.fromTo(".process-step",
-      { opacity: 0.2, scale: 0.8 },
-      {
-        opacity: 1,
-        scale: 1,
-        stagger: 0.2,
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top center",
-          end: "bottom center",
-          scrub: 1
-        }
+    // Create main sequence timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 65%",
+        toggleActions: "play none none reverse"
       }
-    );
+    });
+
+    // 1. Draw timeline
+    tl.to(timelineLineRef.current, {
+      strokeDashoffset: 0,
+      ease: "none",
+      duration: 2
+    }, 0);
+
+    const steps = gsap.utils.toArray('.process-step');
+
+    steps.forEach((step, i) => {
+      // Sync startTime with the 2s timeline line drawing
+      const startTime = (i / (steps.length - 1)) * 2;
+
+      // 2. Glass Circle pops in
+      const glassContainer = step.querySelector('.glass-icon-container');
+      const glassCircle = step.querySelector('.glass-circle');
+
+      tl.fromTo(glassContainer,
+        { scale: 0.3, opacity: 0, rotationY: -15, rotationX: -5 },
+        { scale: 1, opacity: 1, rotationY: 0, rotationX: 0, ease: "elastic.out(1, 0.5)", duration: 0.6 },
+        startTime
+      );
+
+      // 3. Icon draws itself
+      const svgPaths = step.querySelectorAll('.icon-svg path, .icon-svg circle, .icon-svg rect, .icon-svg polyline');
+      svgPaths.forEach(path => {
+        const pathLength = path.getTotalLength ? path.getTotalLength() : 100;
+        tl.fromTo(path,
+          { strokeDashoffset: pathLength, opacity: 0 },
+          { strokeDashoffset: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
+          startTime + 0.2
+        );
+      });
+
+      // 4. Reflection sweeps across
+      const reflection = step.querySelector('.reflection-layer');
+      tl.fromTo(reflection,
+        { x: "-100%", y: "-100%", opacity: 0 },
+        { x: "100%", y: "100%", opacity: 0.8, duration: 0.8, ease: "power1.inOut" },
+        startTime + 0.3
+      );
+      // Fade reflection back out slightly
+      tl.to(reflection, { opacity: 0, duration: 0.2 }, startTime + 0.9);
+
+      // 5. Text content fades in
+      const textContent = step.querySelectorAll('.step-text');
+      tl.fromTo(textContent,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.1, duration: 0.4, ease: "power2.out" },
+        startTime + 0.4
+      );
+    });
 
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="w-full bg-[#ffffff] text-white pt-20 border-t border-white/5 flex flex-col font-sans">
+    <section ref={containerRef} className="w-full bg-[#0a0a0a] text-white pt-20 border-t border-white/5 flex flex-col font-sans overflow-hidden">
 
       {/* Top Section: Process Timeline */}
       <div className="max-w-[1500px] mx-auto w-full px-6 lg:px-12 flex flex-col xl:flex-row gap-12 xl:gap-8 items-start justify-between mb-24">
 
         {/* Left Title */}
-        <div className="process-title flex flex-col items-start w-full xl:w-[25%] flex-shrink-0">
+        <div className="process-title flex flex-col items-start w-full xl:w-[25%] flex-shrink-0 relative z-20">
           <span className="text-[#ff6b00] font-bold text-[11px] tracking-widest uppercase mb-4 block">
             OUR PROCESS
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-black">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-white">
             From Concept<br />
             To <span className="text-[#ff6b00]">Creation</span>
           </h2>
         </div>
 
         {/* Right Timeline */}
-        <div className="w-full xl:w-[75%] relative mt-8 xl:mt-0 overflow-hidden">
-          <div className="w-full flex pb-8">
+        <div className="w-full xl:w-[75%] relative mt-8 xl:mt-0">
+          <div className="w-full flex pb-8 relative">
+
+            {/* Animated SVG Timeline Line */}
+            <div className="absolute top-[60px] left-[5%] right-[5%] h-[2px] z-0 pointer-events-none hidden md:block">
+              <svg width="100%" height="2" preserveAspectRatio="none" className="w-full h-full drop-shadow-[0_0_8px_rgba(255,107,0,0.5)]">
+                <line
+                  ref={timelineLineRef}
+                  x1="0" y1="1" x2="100%" y2="1"
+                  stroke="url(#orangeGradient)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <defs>
+                  <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="rgba(255,107,0,0.1)" />
+                    <stop offset="50%" stopColor="rgba(255,107,0,1)" />
+                    <stop offset="100%" stopColor="rgba(255,107,0,0.1)" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+
             <div className="flex-shrink-0 relative px-4 w-full">
-              {/* Connecting Line */}
-              <div className="absolute top-[40px] left-[5%] right-[5%] h-[2px] bg-[#e5e5e5]">
-                <div
-                  ref={processLineRef}
-                  className="h-full bg-[#ff6b00] transition-all duration-300 shadow-[0_0_15px_rgba(255,107,0,0.5)]"
-                ></div>
-              </div>
-              <div className="flex flex-row justify-between gap-4 relative z-10 w-full">
-                {processSteps.map((step) => (
+              <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-4 relative z-10 w-full items-center">
+                {processSteps.map((step, index) => (
                   <div
                     key={`process-${step.id}`}
-                    className="process-step flex flex-col items-center text-center w-[180px] md:w-[200px]"
+                    className="process-step flex flex-col items-center text-center w-[200px]"
                   >
-                    <div className="w-[80px] h-[80px] rounded-full border border-black bg-[#ffffff] flex items-center justify-center mb-5 shadow-lg text-black">
-                      {step.icon}
+                    <GlassIcon icon={step.icon} id={step.id} index={index} />
+
+                    <div className="mt-6 flex flex-col items-center">
+                      <span className="step-text text-sm font-bold mb-2 tracking-widest text-[#ff6b00]">{step.id}</span>
+                      <h3 className="step-text text-[13px] font-semibold mb-2 text-white">{step.title}</h3>
+                      <p className="step-text text-[11px] leading-[1.6] max-w-[150px] text-gray-400">
+                        {step.desc}
+                      </p>
                     </div>
-                    <span className="text-sm font-bold mb-2 tracking-widest text-[#ff6b00]">{step.id}</span>
-                    <h3 className="text-[13px] font-semibold mb-2 text-black">{step.title}</h3>
-                    <p className="text-[11px] leading-[1.6] max-w-[150px] text-gray-500">
-                      {step.desc}
-                    </p>
                   </div>
                 ))}
               </div>
@@ -153,7 +206,7 @@ const OurProcess = () => {
       </div>
 
       {/* Bottom Section: Stats Bar */}
-      <div className="w-full bg-[#111111] border-y border-white/5 py-1">
+      <div className="w-full bg-[#111111] border-y border-white/5 py-1 relative z-20">
         <div className="max-w-[1500px] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 divide-x-0 lg:divide-x divide-white/10 py-4">
             {stats.map((stat, index) => (

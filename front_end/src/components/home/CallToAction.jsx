@@ -126,6 +126,7 @@ const CallToAction = () => {
               prefix="frame_4_"
               startFrame={90000}
               endFrame={93497}
+              step={3}
               className="absolute inset-0 w-full h-full"
             />
 
