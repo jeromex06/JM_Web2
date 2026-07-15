@@ -267,15 +267,15 @@ const AboutSection = () => {
         </div>
 
         {/* Right Content - 3D House Facade Canvas */}
-        <div className="relative w-full lg:w-[55%] h-[500px] lg:h-auto overflow-hidden">
-          {/* We use an SVG mask to create the exact shape shown in the UI */}
+        {/* <div className="relative w-full lg:w-[55%] h-[500px] lg:h-auto overflow-hidden">
+         
           <div
             className="absolute inset-0 w-full h-full"
             style={{
               clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 10% 100%, 0% 50%)',
             }}
           >
-            {/* The 3D Canvas replacing the old video */}
+          
             <Canvas
               className="absolute inset-0 w-full h-full"
               camera={{ position: [15, 12, 18], fov: 45 }}
@@ -283,7 +283,7 @@ const AboutSection = () => {
             >
               <color attach="background" args={['#070b14']} />
 
-              {/* Lighting for the metallic steel sheets */}
+             
               <ambientLight intensity={0.8} />
               <directionalLight position={[10, 10, 10]} intensity={2} />
               <directionalLight position={[-10, 10, -10]} intensity={1.5} />
@@ -302,14 +302,14 @@ const AboutSection = () => {
             </Canvas>
           </div>
 
-          {/* Border Overlay SVG to draw the thin grey/white border on the cut line */}
+        
           <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 100">
-            {/* The static grey border line */}
+         
             <polyline points="10,0 0,50 10,100" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
-            {/* The animated glowing blue border line that draws itself */}
+           
             <polyline className="border-line" points="10,0 0,50 10,100" fill="none" stroke="#4fcdf2" strokeWidth="2" vectorEffect="non-scaling-stroke" />
           </svg>
-        </div>
+        </div> */}
 
       </div>
     </section>

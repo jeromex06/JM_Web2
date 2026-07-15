@@ -23,7 +23,7 @@ export default function ImageSequenceHero() {
     const loadImages = async () => {
       const loaded = [];
       let loadedCount = 0;
-      
+
       const promises = images.map((src, index) => {
         return new Promise((resolve) => {
           const img = new Image();
@@ -39,85 +39,108 @@ export default function ImageSequenceHero() {
             resolve();
           };
           img.onerror = () => {
-             loaded[index] = null;
-             loadedCount++;
-             setProgress(Math.round((loadedCount / images.length) * 100));
-             if (loadedCount === images.length) {
-                setLoadedImages(loaded);
-                setImagesLoaded(true);
-             }
-             resolve();
+            loaded[index] = null;
+            loadedCount++;
+            setProgress(Math.round((loadedCount / images.length) * 100));
+            if (loadedCount === images.length) {
+              setLoadedImages(loaded);
+              setImagesLoaded(true);
+            }
+            resolve();
           };
         });
       });
-      
+
       await Promise.all(promises);
     };
-    
+
     loadImages();
   }, []);
 
+  const text2Ref = useRef(null);
+  const text3Ref = useRef(null);
+
   useGSAP(() => {
     if (!imagesLoaded || !canvasRef.current) return;
-    
+
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    
+
     // Set canvas dimensions
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       render();
     };
-    
+
     const render = () => {
       if (!canvas || !ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const img = loadedImages[Math.round(playhead.current.frame)];
-      
+
       if (img) {
         // Calculate dimensions to cover the canvas (like object-fit: cover)
         const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
         const x = (canvas.width / 2) - (img.width / 2) * scale;
         const y = (canvas.height / 2) - (img.height / 2) * scale;
-        
+
         ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
       }
     };
-    
+
     // Initial render
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
-    
-    // Setup GSAP ScrollTrigger
-    ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: 'top top',
-      end: '+=400%', // Adjust scroll length here
-      pin: true,
-      animation: gsap.to(playhead.current, {
-        frame: loadedImages.length - 1,
-        ease: 'none',
-        onUpdate: render
-      }),
-      scrub: 0.5, // Smooth scrubbing
+
+    // Setup GSAP Timeline and ScrollTrigger
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top top',
+        end: '+=400%', // Adjust scroll length here
+        pin: true,
+        scrub: 0.5, // Smooth scrubbing
+      }
     });
-    
-    // Fade out text on scroll
+
+    // Animate playhead
+    tl.to(playhead.current, {
+      frame: loadedImages.length - 1,
+      ease: 'none',
+      duration: 1,
+      onUpdate: render
+    }, 0);
+
+    // Fade out initial text on scroll
     if (textRef.current) {
-      gsap.to(textRef.current, {
+      tl.to(textRef.current, {
         opacity: 0,
-        y: -50,
+        x: -50,
         ease: 'power2.inOut',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: '+=50%',
-          scrub: true,
-        }
-      });
+        duration: 0.1
+      }, 0);
     }
-    
+
+    // Text 2: Standard Fabrication
+    if (text2Ref.current) {
+      tl.fromTo(text2Ref.current,
+        { opacity: 0, x: -50 },
+        { opacity: 1, x: 0, duration: 0.1, ease: 'power2.out' },
+        0.15
+      )
+        .to(text2Ref.current, { opacity: 0, x: 50, duration: 0.1, ease: 'power2.in' }, 0.35);
+    }
+
+    // Text 3: Premium Coating & Finishing
+    if (text3Ref.current) {
+      tl.fromTo(text3Ref.current,
+        { opacity: 0, x: -50 },
+        { opacity: 1, x: 0, duration: 0.1, ease: 'power2.out' },
+        0.75
+      )
+        .to(text3Ref.current, { opacity: 0, x: 50, duration: 0.1, ease: 'power2.in' }, 0.95);
+    }
+
     return () => {
       window.removeEventListener('resize', resizeCanvas);
     };
@@ -129,26 +152,50 @@ export default function ImageSequenceHero() {
         ref={canvasRef}
         className="absolute top-0 left-0 w-full h-full object-cover"
       />
-      
-      {/* Overlay Content */}
-      <div ref={textRef} className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10">
-        <div className="hero-animate inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-sky-500/20 bg-sky-950/20 text-[#3BA7FF] text-xs font-mono font-medium tracking-wider mb-6 backdrop-blur-md shadow-[0_0_15px_rgba(59,167,255,0.1)]">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
-          </span>
-          VISUALIZATION_ENGINE
-        </div>
-        
-        <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 drop-shadow-lg text-center font-sans">
-          Engineering <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-400 to-[#3BA7FF]">
-            Excellence.
-          </span>
-        </h1>
-        <p className="text-gray-300 text-lg md:text-xl max-w-2xl text-center drop-shadow-md font-light">
-          Scroll to explore the evolution of our architectural facades through precision and innovation.
+
+      {/* Initial Overlay Content */}
+      <div ref={textRef} className="absolute inset-y-0 left-[10%] flex flex-col justify-center pointer-events-none z-10">
+        <div className="w-12 h-1 bg-[#3BA7FF] mb-6"></div>
+        <h2 className="text-white text-5xl md:text-7xl font-bold tracking-tight uppercase leading-[1.1] font-sans drop-shadow-lg">
+          Precision <br />
+          Sheet Metal <br />
+          & Facades
+        </h2>
+        <div className="w-12 h-1 bg-[#3BA7FF] mt-6"></div>
+      </div>
+
+      {/* Text 2 */}
+      <div ref={text2Ref} className="absolute inset-y-0 left-[10%] flex flex-col justify-center pointer-events-none z-10 opacity-0">
+        <div className="w-12 h-1 bg-[#3BA7FF] mb-6"></div>
+        <h2 className="text-white text-5xl md:text-6xl font-bold tracking-tight uppercase leading-[1.1] font-sans mb-6 drop-shadow-lg">
+          Standard <br />
+          Fabrication
+        </h2>
+        <div className="w-12 h-1 bg-[#3BA7FF] mb-8"></div>
+        <p className="text-gray-300 text-sm md:text-base mb-8 max-w-md font-light leading-relaxed drop-shadow-md">
+          Weider preavandzed dieftech and firtcelore fryee-tiendetalwa, nefite aleges actlacter: featlon corn offecrites, Roren imerloire proleces, inicidider withes rectroptinal and ounmer.
         </p>
+        <button className="border border-white/30 bg-black/20 backdrop-blur-sm hover:bg-white/10 text-white px-8 py-3 text-xs tracking-widest uppercase transition-colors pointer-events-auto w-fit flex items-center gap-3">
+          READ MORE
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Text 3 */}
+      <div ref={text3Ref} className="absolute top-[35%] left-[10%] flex flex-col pointer-events-none z-10 opacity-0">
+        <div className="w-12 h-1 bg-[#3BA7FF] mb-6"></div>
+        <h2 className="text-white text-5xl md:text-6xl font-bold tracking-tight uppercase leading-[1.1] font-sans mb-6 drop-shadow-lg">
+          Premium Coating <br />
+          & Finishing
+        </h2>
+        <p className="text-gray-300 text-sm md:text-base mb-8 max-w-md font-light leading-relaxed drop-shadow-md">
+          Prouit craftseface maomize dralye, and eioaroins butyra aind form ha netaog sl morrttons.
+        </p>
+        <button className="border border-white/30 bg-black/20 backdrop-blur-sm hover:bg-white/10 text-white px-8 py-3 text-xs tracking-widest uppercase transition-colors pointer-events-auto w-fit flex items-center gap-3">
+          READ MORE
+        </button>
       </div>
 
       {/* Loading State */}
@@ -156,14 +203,14 @@ export default function ImageSequenceHero() {
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#050B16] z-20 transition-opacity duration-500">
           <div className="text-sky-400 font-mono text-sm mb-4">LOADING SEQUENCE... {progress}%</div>
           <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden">
-            <div 
+            <div
               className="h-full bg-sky-500 shadow-[0_0_10px_#3BA7FF] transition-all duration-300"
               style={{ width: `${progress}%` }}
             ></div>
           </div>
         </div>
       )}
-      
+
       {/* Scroll Indicator */}
       {imagesLoaded && (
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none animate-bounce z-10 text-white/50">

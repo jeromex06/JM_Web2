@@ -42,7 +42,7 @@ const Hero = () => {
     const totalImages = frame1Urls.length + frameUrls.length;
     const allUrls = [...frame1Urls, ...frameUrls];
     const images = [];
-    
+
     // Preload images
     allUrls.forEach((url, i) => {
       const img = new Image();
@@ -83,7 +83,7 @@ const Hero = () => {
 
           // Logic for text updates based on progress
           const progress = currentFrame / totalImages;
-          
+
           if (progress > 0.95) {
             setIsFinished(true);
           } else {
@@ -126,12 +126,17 @@ const Hero = () => {
               </div>
             ) : (
               <div className="transition-opacity duration-700 ease-in-out">
-                <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-[0.1em] uppercase text-[#D4AF37] drop-shadow-lg">
-                  ENTER THE WORLD
-                </h1>
+                <div className="transition-opacity duration-500 ease-in-out">
+                  <h1 className="text-5xl md:text-7xl font-bold tracking-[0.1em] uppercase mb-6 text-[#D4AF37] drop-shadow-lg">
+                    {contents[activeTextIndex]?.heading}
+                  </h1>
+                  <p className="text-xl md:text-3xl font-light tracking-wide text-white drop-shadow-md">
+                    {contents[activeTextIndex]?.paragraph}
+                  </p>
+                </div>
               </div>
             )}
-            
+
             <div className="absolute bottom-12 animate-bounce text-white/50 hidden md:block">
               <span className="text-xs uppercase tracking-widest block mb-2">Scroll</span>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mx-auto">
