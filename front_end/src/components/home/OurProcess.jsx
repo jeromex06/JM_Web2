@@ -9,16 +9,16 @@ gsap.registerPlugin(ScrollTrigger);
 const processSteps = [
   {
     id: '01',
-    title: 'Consultation',
-    desc: 'Understanding your needs and project goals.',
+    title: ' Consultation',
+    desc: 'Understanding your project requirements to recommend practical and efficient solutions.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
     )
   },
   {
     id: '02',
-    title: 'Engineering Design',
-    desc: 'Detailed planning and 3D modeling for accurate results.',
+    title: 'Design & Planning',
+    desc: 'Developing clear designs and detailed plans to support smooth and efficient project execution.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
     )
@@ -26,23 +26,23 @@ const processSteps = [
   {
     id: '03',
     title: 'Precision Manufacturing',
-    desc: 'High-precision manufacturing using advanced technology.',
+    desc: 'Producing high-quality sheet metal and architectural façade solutions using advanced manufacturing processes.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
     )
   },
   {
     id: '04',
-    title: 'Quality Inspection',
-    desc: 'Rigorous quality checks to ensure superior standards.',
+    title: 'Quality Assurance',
+    desc: 'Conducting thorough quality checks to ensure durability, accuracy, and consistent performance',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
     )
   },
   {
     id: '05',
-    title: 'Installation',
-    desc: 'Professional installation and timely project completion.',
+    title: 'Delivery & Installation',
+    desc: 'Providing timely delivery and professional installation to ensure every project is completed successfully',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
     )
@@ -50,12 +50,12 @@ const processSteps = [
 ];
 
 const stats = [
-  { value: '500+', label: 'Projects Completed' },
-  { value: '15+', label: 'Years of Experience' },
-  { value: '250+', label: 'Skilled Professionals' },
-  { value: '25+', label: 'Industries Served' },
-  { value: '1M+', label: 'Sq. Ft. Fabricated' },
-  { value: '98%', label: 'Client Satisfaction' }
+  { value: '500+', label: 'Successful Projects Delivered' },
+  { value: '15+', label: 'Years of Engineering Excellence' },
+  { value: '250+', label: 'Experienced Professionals' },
+  { value: '25+', label: 'Industry Sectors Served' },
+  { value: '1M+', label: 'Sq. Ft. Precision Fabricated' },
+  { value: '98%', label: 'Customer Satisfaction Rate' }
 ];
 
 const OurProcess = () => {
@@ -149,11 +149,11 @@ const OurProcess = () => {
         {/* Left Title */}
         <div className="process-title flex flex-col items-start w-full xl:w-[25%] flex-shrink-0 relative z-20">
           <span className="text-[#ff6b00] font-bold text-[11px] tracking-widest uppercase mb-4 block">
-            OUR PROCESS
+            Our Proven Process
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-white">
-            From Concept<br />
-            To <span className="text-[#ff6b00]">Creation</span>
+            From Vision<br />
+            To <span className="text-[#ff6b00]">Reality</span>
           </h2>
         </div>
 

@@ -173,14 +173,9 @@ export default function ImageSequenceHero() {
         </h2>
         <div className="w-12 h-1 bg-[#3BA7FF] mb-8"></div>
         <p className="text-gray-300 text-sm md:text-base mb-8 max-w-md font-light leading-relaxed drop-shadow-md">
-          Weider preavandzed dieftech and firtcelore fryee-tiendetalwa, nefite aleges actlacter: featlon corn offecrites, Roren imerloire proleces, inicidider withes rectroptinal and ounmer.
+          We transform raw mterials into high-performance engineering solutions through advanced fabrication techniques and skilled craftsmanship.
         </p>
-        <button className="border border-white/30 bg-black/20 backdrop-blur-sm hover:bg-white/10 text-white px-8 py-3 text-xs tracking-widest uppercase transition-colors pointer-events-auto w-fit flex items-center gap-3">
-          READ MORE
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+
       </div>
 
       {/* Text 3 */}
@@ -191,11 +186,9 @@ export default function ImageSequenceHero() {
           & Finishing
         </h2>
         <p className="text-gray-300 text-sm md:text-base mb-8 max-w-md font-light leading-relaxed drop-shadow-md">
-          Prouit craftseface maomize dralye, and eioaroins butyra aind form ha netaog sl morrttons.
+          Protection that performs, finish that impresses
         </p>
-        <button className="border border-white/30 bg-black/20 backdrop-blur-sm hover:bg-white/10 text-white px-8 py-3 text-xs tracking-widest uppercase transition-colors pointer-events-auto w-fit flex items-center gap-3">
-          READ MORE
-        </button>
+
       </div>
 
       {/* Loading State */}

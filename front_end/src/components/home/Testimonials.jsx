@@ -48,7 +48,7 @@ const Testimonials = () => {
             <h4 className="text-orange-500 font-semibold tracking-wider uppercase text-sm mb-2">Testimonials</h4>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <h2 className="text-4xl md:text-5xl font-bold">Trusted By Industry Leaders</h2>
+            <h2 className="text-4xl md:text-5xl font-bold">Trusted by Businesses Across Industries </h2>
           </ScrollReveal>
         </div>
       </div>

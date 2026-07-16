@@ -8,7 +8,7 @@ import IndustriesAndTech from '../components/home/IndustriesAndTech';
 import Testimonials from '../components/home/Testimonials';
 import CallToAction from '../components/home/CallToAction';
 import ClientLogos from '../components/home/ClientLogos';
-import Contact from '../components/contact/Contact';
+import ContactForm from '../components/contact/ContactForm';
 
 const Home = () => {
     return (
@@ -21,8 +21,7 @@ const Home = () => {
             <IndustriesAndTech />
             <Testimonials />
             <CallToAction />
-
-            <Contact />
+            <ContactForm />
             <ClientLogos />
         </main>
     );

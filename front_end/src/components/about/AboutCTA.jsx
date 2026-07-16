@@ -28,17 +28,17 @@ export default function AboutCTA() {
           {/* Text Content */}
           <div>
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-              Ready to Build the Future Together?
+              Ready to shape tomorrow — together
             </h3>
             <p className="text-gray-400 text-sm md:text-base">
-              Let's create something amazing.
+              Let's create something great together
             </p>
           </div>
         </div>
 
         {/* Call to Action Button */}
         <button className="group relative flex items-center gap-2 bg-gradient-to-r from-orange-600 to-orange-500 text-white font-semibold py-3 md:py-4 px-8 rounded-xl hover:from-orange-500 hover:to-orange-400 transition-all duration-300 shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] overflow-hidden shrink-0">
-          <span className="relative z-10">Get In Touch</span>
+          <span className="relative z-10">Reach out for get in touch</span>
           <ChevronRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
 
           {/* Button highlight effect */}

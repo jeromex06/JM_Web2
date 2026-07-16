@@ -27,12 +27,12 @@ const industries = [
 ];
 
 const technologies = [
-  "CNC Machining Centers",
-  "Laser Cutting Technology",
-  "Robotic Welding",
-  "Powder Coating Plant",
-  "Advanced Quality Testing",
-  "CAD / CAM Design"
+  "High-Precision CNC Machining",
+  "Advanced Laser Cutting Systems",
+  "Automated Robotic Welding",
+  "Premium Powder Coating",
+  "Comprehensive Quality Inspection",
+  "CAD/CAM Engineering & Design"
 ];
 
 const IndustriesAndTech = () => {
@@ -50,7 +50,7 @@ const IndustriesAndTech = () => {
           {/* Left Column - Industries */}
           <div className="lg:w-[35%] xl:w-[25%] p-6 lg:p-8 lg:border-r border-gray-800 flex flex-col">
             <ScrollReveal delay={0.1}>
-              <h4 className="text-[#FF6B00] font-semibold tracking-wider uppercase text-xs mb-8 flex-shrink-0">Industries We Serve</h4>
+              <h4 className="text-[#FF6B00] font-semibold tracking-wider uppercase text-xs mb-8 flex-shrink-0">Industries We Empower</h4>
             </ScrollReveal>
             <div className="flex flex-col gap-3 max-w-full lg:max-w-md flex-1">
               {industries.map((industry, index) => (
@@ -78,22 +78,22 @@ const IndustriesAndTech = () => {
             {/* 1. Text Section */}
             <div className="p-8 flex-1 flex flex-col justify-center z-20 min-w-0 xl:w-[30%]">
               <ScrollReveal delay={0.1}>
-                <h4 className="text-[#FF6B00] font-semibold tracking-wider uppercase text-xs mb-6">Technology & Innovation</h4>
+                <h4 className="text-[#FF6B00] font-semibold tracking-wider uppercase text-xs mb-6">Powered By Technology. Driven By Innovation.</h4>
               </ScrollReveal>
               <ScrollReveal delay={0.2}>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 leading-[1.1] tracking-tight">
-                  Powered By Technology.<br />Driven By Innovation.
+                  Advanced Manufacturing &  <br /> Smart Engineering.
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={0.3}>
                 <p className="text-gray-400 mb-8 text-xs lg:text-sm leading-relaxed">
-                  Our advanced machinery and innovative processes enable us to deliver precision, quality, and efficiency in every project.
+                  Our advanced manufacturing capabilities, precision engineering, and modern production technologies enable us to deliver reliable sheet metal fabrication, architectural façade systems, and customized engineering solutions with exceptional quality, efficiency, and performance.
                 </p>
               </ScrollReveal>
 
               <ScrollReveal delay={0.4}>
                 <button className="border border-[#FF6B00] text-[#FF6B00] hover:bg-[#FF6B00] hover:text-white px-6 py-3 rounded-md uppercase tracking-widest text-[10px] font-bold transition-colors duration-300 flex items-center gap-2 w-fit">
-                  Explore Technology
+                  Explore Our Capabilities
                   <span className="text-lg leading-none">&rarr;</span>
                 </button>
               </ScrollReveal>
@@ -108,7 +108,7 @@ const IndustriesAndTech = () => {
                 <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#111] to-transparent z-20"></div>
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#111] to-transparent z-20"></div>
 
-                <ImageSequence 
+                <ImageSequence
                   folder="frame_3"
                   prefix="Timeline 1_"
                   startFrame={86400}

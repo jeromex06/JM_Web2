@@ -94,12 +94,12 @@ const CallToAction = () => {
         {/* Left Side: Content */}
         <div ref={leftContentRef} className="p-10 lg:p-16 flex flex-col justify-center w-full lg:w-[45%] relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 leading-tight tracking-tight uppercase">
-            Let's Build Something <br />
-            <span className="text-[#FF6B00]">Extraordinary</span> Together
+            TRANSFORM YOUR  <br />
+            <span className="text-[#FF6B00]">VISION INTO </span> REALITY
           </h2>
-          
+
           <p className="text-gray-400 text-sm md:text-base mb-10 max-w-md leading-relaxed mt-4">
-            Partner with Jova Metacraft for innovative, high-quality, and reliable engineering solutions.
+            Collaborate with Jova Metacraft to access innovative sheet metal fabrication, architectural façade solutions, and precision manufacturing tailored to your project requirements.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -121,7 +121,7 @@ const CallToAction = () => {
             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#111] to-transparent z-10 hidden lg:block"></div>
 
             {/* Animated Image Sequence */}
-            <ImageSequence 
+            <ImageSequence
               folder="frame_4"
               prefix="frame_4_"
               startFrame={90000}

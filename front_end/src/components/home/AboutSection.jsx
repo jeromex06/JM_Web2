@@ -206,7 +206,7 @@ const AboutSection = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const paragraphText = "Jova Metacraft is a leading engineering and manufacturing company delivering high-quality steel fabrication, CNC machining, architectural aluminium systems, and advanced finishing solutions.";
+  const paragraphText = "Jova Metacraft is a trusted engineering and manufacturing company specializing in precision sheet metal fabrication, architectural façade systems, CNC machining, and advanced metal finishing. We deliver customized, high-performance solutions that combine innovation, quality craftsmanship, and cutting-edge manufacturing to support commercial, industrial, and infrastructure projects.";
   const words = paragraphText.split(" ");
 
   useGSAP(() => {
@@ -271,8 +271,8 @@ const AboutSection = () => {
             </span>
 
             <h2 className="about-heading text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-8 relative z-10">
-              Precision Sheet<br />
-              Metal & <span className="text-[#ff6b00]">Facades</span>
+              Engineered Metal Solutions <br />
+              & <span className="text-[#ff6b00]">Architectural Façade Systems</span>
             </h2>
 
             <p ref={textRef} className="text-[15px] md:text-[16px] font-light mb-12 leading-[1.8] max-w-md flex flex-wrap gap-x-1 relative z-10">

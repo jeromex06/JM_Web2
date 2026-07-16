@@ -13,7 +13,7 @@ const Footer = () => {
               <img src={logoFull} alt="JOVA METCRAFT" className="h-16 md:h-20 object-contain" />
             </div>
             <p className="text-sm text-gray-400 mt-2 max-w-xs">
-              Excellence in Metal Crafting & Innovative Glass Solutions.
+              Where imagination meets infrastructure
             </p>
           </div>
 

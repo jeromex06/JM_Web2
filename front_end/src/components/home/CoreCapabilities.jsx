@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import steelImage from '../../assets/steel_fabrication.png';
 import ActiveCardDetails from './ActiveCardDetails';
 import { ScrollReveal } from './ScrollReveal';
+import pvr_coating from "../../assets/pvr-coating.jpeg"
 
 const capabilities = [
   {
@@ -10,7 +11,7 @@ const capabilities = [
   },
   {
     title: 'PVR Coating',
-    image: steelImage,
+    image: pvr_coating,
   },
   {
     title: 'Colour Coating',
@@ -20,10 +21,7 @@ const capabilities = [
     title: 'Facade Solutions',
     image: steelImage,
   },
-  {
-    title: 'Facade Solutions',
-    image: steelImage,
-  }
+
 ];
 
 // Spark particle component

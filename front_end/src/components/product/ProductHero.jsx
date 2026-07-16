@@ -59,22 +59,17 @@ const ProductHero = () => {
         </div>
 
         {/* Main Heading */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.05] mb-8">
-          Materials.<br />
-          Engineering.<br />
-          <span className="text-[#ff5c00]">Possibilities.</span>
+        <h1 className="text-[50px] sm:text-6xl md:text-7xl lg:text-[60px] font-bold text-white leading-[1.05] mb-8">
+          Transforming raw materials into <br />
+          <span className="text-[#ff5c00]">engineered excellence</span>
         </h1>
 
         {/* Subtitle */}
         <p className="text-gray-400 text-base sm:text-lg lg:text-xl max-w-md mb-10 leading-relaxed font-light">
-          Premium aluminium solutions crafted for architecture, built for performance, designed for tomorrow.
+          Behind every great innovation is a material that made it possible — and an engineer who saw that possibility first
         </p>
 
-        {/* CTA Button */}
-        <button className="flex items-center space-x-3 text-white border border-[#ff5c00]/40 bg-[#0a0a0a]/50 hover:bg-[#ff5c00]/10 hover:border-[#ff5c00] transition-all duration-300 rounded-full px-7 py-3 w-max group cursor-pointer backdrop-blur-sm">
-          <span className="font-semibold text-sm">Explore Our Products</span>
-          <ArrowRight className="w-4 h-4 text-[#ff5c00] group-hover:translate-x-1 transition-transform" />
-        </button>
+
       </div>
 
       {/* Right Image Area */}

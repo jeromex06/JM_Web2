@@ -128,11 +128,11 @@ const FeaturedProjects = () => {
       <div className="projects-heading flex flex-col lg:flex-row justify-between items-start lg:items-end w-full max-w-[1600px] mx-auto mb-24 px-4 md:px-10 lg:px-12 z-10 relative">
         <div>
           <span className="text-[#ff6b00] font-bold text-[11px] tracking-widest uppercase mb-4 block">
-            FEATURED PROJECTS
+            PROJECT PORTFOLIO
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-7xl font-semibold leading-[1.1] text-black">
-            Building Landmarks.<br />
-            Creating <span className="text-[#ff6b00]">Legacies.</span>
+            Delivering Excellence. <br />
+            Creating <span className="text-[#ff6b00]">Lasting Value.</span>
           </h2>
         </div>
 

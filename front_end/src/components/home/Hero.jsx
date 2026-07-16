@@ -14,16 +14,16 @@ const frameUrls = Object.values(frameGlob).map(mod => mod.default || mod);
 
 const contents = [
   {
-    heading: "VISIONARY DESIGN",
-    paragraph: "Experience the pinnacle of virtual construction and architectural visualization."
+    heading: "ENGINEERING THE FUTURE",
+    paragraph: "Advancing the future of construction with virtual construction, architectural visualization, and innovative engineering solutions designed to improve efficiency, collaboration, and project performance."
   },
   {
-    heading: "BUILD THE FUTURE",
-    paragraph: "Pushing the boundaries of design with cutting-edge technology and innovation."
+    heading: "DEFINING TOMORROW",
+    paragraph: "Driving innovation through advanced construction solutions, precision manufacturing, and modern technologies that deliver sustainable, high-quality outcomes for the built environment."
   },
   {
-    heading: "INNOVATE WITH JOVA",
-    paragraph: "Crafting digital spaces that inspire and redefine the modern landscape."
+    heading: "DRIVEN BY INNOVATION",
+    paragraph: "Delivering advanced engineering, precision fabrication, and technology-driven solutions designed to meet the evolving needs of modern construction and infrastructure."
   }
 ];
 

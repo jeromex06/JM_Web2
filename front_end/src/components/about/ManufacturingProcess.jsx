@@ -60,8 +60,6 @@ export default function ManufacturingProcess() {
 
         {/* Process Timeline */}
         <div className="relative w-full">
-          {/* Connecting Line */}
-          <div className="hidden lg:block absolute top-[180px] left-[5%] right-[5%] h-[2px] bg-gradient-to-r from-gray-800 via-orange-500/50 to-gray-800 z-0"></div>
 
           <div className="flex flex-nowrap lg:grid lg:grid-cols-6 gap-6 lg:gap-4 overflow-x-auto pb-12 snap-x hide-scrollbar relative z-10">
             {processSteps.map((step, index) => (
