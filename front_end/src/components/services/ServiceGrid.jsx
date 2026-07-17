@@ -102,7 +102,7 @@ const ServiceGrid = () => {
   }, [hash, lenis]);
 
   return (
-    <section id="engineering-excellence" className="relative w-full bg-[#FAFAFA] min-h-screen py-16 lg:py-24 flex flex-col justify-center overflow-x-hidden">
+    <section id="engineering-excellence" className="relative w-full bg-[#FAFAFA] py-16 lg:py-24 flex flex-col justify-center" style={{ overflow: 'clip' }}>
       <style>{`
         @keyframes highlight-pulse {
           0%, 100% {
@@ -142,7 +142,7 @@ const ServiceGrid = () => {
             <div
               key={service.id}
               id={`service-${service.id}`}
-              className={`group relative bg-white rounded-3xl border transition-all duration-500 overflow-hidden flex flex-col h-auto lg:h-[38vh] min-h-[330px] cursor-pointer ${
+              className={`group relative bg-white rounded-3xl border transition-all duration-500 overflow-hidden flex flex-col min-h-[320px] h-auto cursor-pointer ${
                 highlightedId === service.id
                   ? 'highlighted-service-card border-[#E34A12] z-30'
                   : 'border-gray-100/80 hover:border-transparent hover:shadow-[0_20px_50px_rgba(227,74,18,0.08)]'
