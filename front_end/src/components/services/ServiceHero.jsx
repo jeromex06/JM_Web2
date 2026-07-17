@@ -18,14 +18,6 @@ const ServiceHero = () => {
           <p className="mt-6 text-gray-300 text-lg md:text-xl max-w-xl leading-relaxed">
             We engineer precision steel fabrication and industrial solutions that deliver unmatched strength, superior quality, and long-term reliability for every project.
           </p>
-
-          <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <button className="flex items-center justify-center gap-2 px-8 py-4 bg-[#FF5722] hover:bg-[#E64A19] text-white font-semibold text-sm tracking-wider uppercase transition-colors duration-300 rounded-sm">
-              REQUEST A QUOTE
-              <ArrowRight className="w-5 h-5" />
-            </button>
-
-          </div>
         </div>
       </div>
 

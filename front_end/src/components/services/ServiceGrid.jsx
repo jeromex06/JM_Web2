@@ -1,107 +1,144 @@
 import React from 'react';
-import MagicBento from './MagicBento';
+import { GlassIcon } from './icons/GlassIcon';
 import {
   StructuralSteelIcon,
   CraneErectionIcon,
   PebFabricationIcon,
-  MezzanineFloorsIcon,
-  PebModificationsIcon,
-  SiteBarricadingIcon,
-  PufInstallationIcon,
-  IndustrialShedsIcon,
-  MachineryPlatformsIcon
+  MezzanineFloorsIcon
 } from './icons/ServiceIllustrations';
+
+import servicesFabrication from '../../assets/services_fabrication.png';
+import servicesErection from '../../assets/services_erection.png';
+import servicesPeb from '../../assets/services_peb.png';
+import servicesInfrastructure from '../../assets/services_infrastructure.png';
 
 const servicesList = [
   {
     id: '01',
     title: 'STRUCTURAL STEEL FABRICATION',
-    description: 'Precision MS and structural steel fabrication for commercial, industrial and infrastructure projects — built from your drawings to exact specification.',
-    icon: <StructuralSteelIcon />
+    description: 'Steel fabrication transforms raw metal into precise, functional structures through cutting, bending, welding, and assembly. Our skilled fabricators combine advanced machinery with hands-on craftsmanship to deliver components that meet exact specifications. From structural beams to custom brackets, every piece is engineered for strength, durability, and long-term performance. We work with a range of steel grades and finishes to suit industrial, commercial, and architectural applications. Quality control at every stage ensures the final product is ready for reliable, real-world use.',
+    icon: <StructuralSteelIcon />,
+    image: servicesFabrication,
+    checklist: []
   },
   {
     id: '02',
     title: 'STRUCTURAL STEEL ERECTION',
     description: 'On-site structural steel erection with experienced crews, coordinated with your project schedule for zero-delay integration.',
-    icon: <CraneErectionIcon />
+    icon: <CraneErectionIcon />,
+    image: servicesErection,
+    checklist: []
   },
   {
     id: '03',
-    title: 'PEB FABRICATION & ERECTION',
+    title: 'PEB SOLUTIONS',
     description: 'Complete pre-engineered building fabrication and erection for industrial sheds, warehouses, and commercial structures.',
-    icon: <PebFabricationIcon />
+    icon: <PebFabricationIcon />,
+    image: servicesPeb,
+    checklist: []
   },
   {
     id: '04',
-    title: 'MEZZANINE STEEL FLOORS',
-    description: 'Custom designed and fabricated mezzanine floors to maximize your vertical space efficiently and safely.',
-    icon: <MezzanineFloorsIcon />
-  },
-  {
-    id: '05',
-    title: 'PEB MODIFICATIONS & ALTERATIONS',
-    description: 'Expert modifications, expansions, and structural alterations to existing pre-engineered buildings.',
-    icon: <PebModificationsIcon />
-  },
-  {
-    id: '06',
-    title: 'SITE BARRICADING',
-    description: 'Heavy-duty steel barricading solutions for construction sites, ensuring safety and secure perimeters.',
-    icon: <SiteBarricadingIcon />
-  },
-  {
-    id: '07',
-    title: 'PUF & DECK SHEET INSTALLATION',
-    description: 'Professional installation of PUF panels and deck sheets for optimal insulation and structural integrity.',
-    icon: <PufInstallationIcon />
-  },
-  {
-    id: '08',
-    title: 'INDUSTRIAL SHEDS',
-    description: 'End-to-end construction of robust industrial sheds tailored to your manufacturing or storage needs.',
-    icon: <IndustrialShedsIcon />
-  },
-  {
-    id: '09',
-    title: 'HEAVY MACHINERY PLATFORMS',
-    description: 'Engineered steel platforms built to withstand immense weight and vibration of heavy industrial machinery.',
-    icon: <MachineryPlatformsIcon />
+    title: 'INDUSTRIAL INFRASTRUCTURE',
+    description: 'Custom solutions including mezzanine floors, machinery platforms, barricading, PUF & deck sheet installation for complete industrial support.',
+    icon: <MezzanineFloorsIcon />,
+    image: servicesInfrastructure,
+    checklist: []
   }
 ];
 
 const ServiceGrid = () => {
   return (
-    <section className="relative w-full bg-white py-24 md:py-32 overflow-hidden">
+    <section className="relative w-full bg-[#FAFAFA] min-h-screen py-16 lg:py-24 flex flex-col justify-center overflow-x-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#E34A12]/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#E34A12]/5 rounded-full blur-[120px] translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 w-full relative z-10">
         {/* Header Section */}
-        <div className="max-w-3xl mx-auto text-center mb-20 md:mb-24">
-
-          <h2 className="text-4xl md:text-5xl lg:text-5xl font-black text-gray-900 tracking-tight mb-8">
+        <div className="max-w-3xl mx-auto text-center mb-12 lg:mb-16">
+          <span className="inline-block text-[#E34A12] text-xs font-black uppercase tracking-widest mb-1.5">
+            • OUR SERVICES
+          </span>
+          <h2 className="text-2xl md:text-4xl lg:text-4xl font-black text-slate-900 tracking-tight mb-2">
             Engineering Excellence. <span className="text-[#E34A12]">Built to Last.</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-xs md:text-sm text-gray-500 max-w-xl mx-auto leading-relaxed font-medium">
             We deliver high-quality steel fabrication, industrial construction, and engineering solutions that ensure durability, safety, and long-term value.
           </p>
         </div>
 
-        {/* Grid Section */}
-        <MagicBento
-          cards={servicesList}
-          textAutoHide={false}
-          enableStars={false}
-          enableSpotlight={true}
-          enableBorderGlow={true}
-          enableTilt={true}
-          enableMagnetism={true}
-          clickEffect={true}
-          spotlightRadius={280}
-          particleCount={10}
-          glowColor="227, 74, 18"
-        />
+        {/* 2x2 Grid Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          {servicesList.map((service) => (
+            <div
+              key={service.id}
+              className="group relative bg-white rounded-3xl border border-gray-100/80 hover:border-transparent hover:shadow-[0_20px_50px_rgba(227,74,18,0.08)] transition-all duration-500 overflow-hidden flex flex-col h-auto lg:h-[38vh] min-h-[330px] cursor-pointer"
+            >
+              {/* Right Image panel positioned absolute spanning full height of parent card wrapper */}
+              <div className="absolute right-0 top-0 bottom-0 w-[42%] overflow-hidden z-10">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                {/* Left Side Gradient Overlay (smooth fade) */}
+                <div className="absolute top-0 bottom-0 left-0 w-12 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none z-10" />
+              </div>
+
+              {/* Overlaid ID Number (absolute top-right corner over the image) */}
+              <span className="absolute top-6 right-8 lg:top-8 lg:right-10 text-[#F1F3F5] font-black text-5xl lg:text-6xl select-none group-hover:text-[#E34A12]/15 transition-colors duration-500 leading-none z-20">
+                {service.id}
+              </span>
+
+              {/* Top Row: Glass Icon only */}
+              <div className="flex justify-between items-start w-full relative z-20 p-5 pb-0 lg:p-6 lg:pb-0">
+                <GlassIcon className="w-12 h-12 lg:w-14 lg:h-14">
+                  {service.icon}
+                </GlassIcon>
+              </div>
+
+              {/* Bottom Row: Content Left */}
+              <div className="flex flex-row justify-between items-stretch flex-grow mt-3 lg:mt-4 gap-6 relative z-10 px-5 pb-5 lg:px-6 lg:pb-6 pt-0">
+                {/* Left Text Details */}
+                <div className="w-[58%] flex flex-col justify-between h-full">
+                  <div>
+                    <h3 className="text-base lg:text-[17px] font-black text-slate-900 tracking-tight group-hover:text-[#E34A12] transition-colors duration-300">
+                      {service.title}
+                    </h3>
+
+                    {/* Small Orange Underline Line */}
+                    <div className="w-10 h-[2.5px] bg-[#E34A12] mt-1.5 mb-3.5"></div>
+
+                    {/* Description */}
+                    <p className="text-gray-500 text-[11px] lg:text-xs leading-relaxed font-medium">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  <div>
+                    {/* Checklist */}
+                    <div className="flex flex-wrap gap-x-3 gap-y-1 mb-2.5 lg:mb-3.5">
+                      {service.checklist.map((item) => (
+                        <div key={item} className="flex items-center space-x-1">
+                          {/* Custom Check Icon */}
+                          <div className="flex items-center justify-center w-3.5 h-3.5 rounded-full border border-[#E34A12] text-[#E34A12] bg-[#E34A12]/5">
+                            <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="4" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                          <span className="text-[10px] lg:text-[11px] font-black text-slate-700 tracking-tight">
+                            {item}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
