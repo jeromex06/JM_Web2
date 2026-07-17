@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useLenis } from 'lenis/react';
 import { GlassIcon } from './icons/GlassIcon';
 import {
   StructuralSteelIcon,
@@ -48,8 +50,74 @@ const servicesList = [
 ];
 
 const ServiceGrid = () => {
+  const { hash } = useLocation();
+  const lenis = useLenis();
+  const [highlightedId, setHighlightedId] = useState(null);
+
+  useEffect(() => {
+    if (hash === '#engineering-excellence') {
+      const timer = setTimeout(() => {
+        const element = document.getElementById('engineering-excellence');
+        if (element) {
+          if (lenis) {
+            lenis.scrollTo(element, {
+              offset: -80,
+              duration: 1.5,
+              easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+            });
+          } else {
+            const yOffset = -80;
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    } else if (hash && hash.startsWith('#service-')) {
+      const serviceId = hash.replace('#service-', '');
+      const timer = setTimeout(() => {
+        const element = document.getElementById(`service-${serviceId}`);
+        if (element) {
+          setHighlightedId(serviceId);
+          if (lenis) {
+            lenis.scrollTo(element, {
+              offset: -120,
+              duration: 1.5,
+              easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+            });
+          } else {
+            const yOffset = -120;
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+          // Remove highlight after 3 seconds
+          const removeHighlightTimer = setTimeout(() => {
+            setHighlightedId(null);
+          }, 3000);
+          return () => clearTimeout(removeHighlightTimer);
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [hash, lenis]);
+
   return (
-    <section className="relative w-full bg-[#FAFAFA] min-h-screen py-16 lg:py-24 flex flex-col justify-center overflow-x-hidden">
+    <section id="engineering-excellence" className="relative w-full bg-[#FAFAFA] min-h-screen py-16 lg:py-24 flex flex-col justify-center overflow-x-hidden">
+      <style>{`
+        @keyframes highlight-pulse {
+          0%, 100% {
+            border-color: #E34A12;
+            box-shadow: 0 0 15px rgba(227, 74, 18, 0.15);
+          }
+          50% {
+            border-color: #FF8D4F;
+            box-shadow: 0 0 35px rgba(227, 74, 18, 0.45);
+          }
+        }
+        .highlighted-service-card {
+          animation: highlight-pulse 1.5s infinite ease-in-out;
+        }
+      `}</style>
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#E34A12]/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#E34A12]/5 rounded-full blur-[120px] translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
@@ -73,7 +141,15 @@ const ServiceGrid = () => {
           {servicesList.map((service) => (
             <div
               key={service.id}
-              className="group relative bg-white rounded-3xl border border-gray-100/80 hover:border-transparent hover:shadow-[0_20px_50px_rgba(227,74,18,0.08)] transition-all duration-500 overflow-hidden flex flex-col h-auto lg:h-[38vh] min-h-[330px] cursor-pointer"
+              id={`service-${service.id}`}
+              className={`group relative bg-white rounded-3xl border transition-all duration-500 overflow-hidden flex flex-col h-auto lg:h-[38vh] min-h-[330px] cursor-pointer ${
+                highlightedId === service.id
+                  ? 'highlighted-service-card border-[#E34A12] z-30'
+                  : 'border-gray-100/80 hover:border-transparent hover:shadow-[0_20px_50px_rgba(227,74,18,0.08)]'
+              }`}
+              style={highlightedId === service.id ? {
+                transform: 'scale(1.02)',
+              } : {}}
             >
               {/* Right Image panel positioned absolute spanning full height of parent card wrapper */}
               <div className="absolute right-0 top-0 bottom-0 w-[42%] overflow-hidden z-10">

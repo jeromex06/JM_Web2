@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import steelImage from '../../assets/steel_fabrication.png';
 import ActiveCardDetails from './ActiveCardDetails';
 import { ScrollReveal } from './ScrollReveal';
@@ -10,15 +11,15 @@ const capabilities = [
     image: steelImage,
   },
   {
-    title: 'PVR Coating',
+    title: 'Shot Blasting',
     image: pvr_coating,
   },
   {
-    title: 'Colour Coating',
+    title: 'Industrial Painting and Coating',
     image: steelImage,
   },
   {
-    title: 'Facade Solutions',
+    title: 'Facade ',
     image: steelImage,
   },
 
@@ -54,14 +55,12 @@ const Sparks = () => {
 };
 
 const CoreCapabilities = () => {
+  const navigate = useNavigate();
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const [activeCard, setActiveCard] = useState(null);
-  const [showDetails, setShowDetails] = useState(false);
-  const [selectedCap, setSelectedCap] = useState(null);
-  const [animKey, setAnimKey] = useState(0);
+  const hoverTimeoutRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const detailsRef = useRef(null);
-  const timeoutRef = useRef(null);
   const sectionRef = useRef(null);
   const scrollRef = useRef(null);
 
@@ -86,12 +85,6 @@ const CoreCapabilities = () => {
     }
   };
 
-  const handleCloseDetails = () => {
-    setActiveCard(null);
-    setShowDetails(false);
-    sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -107,32 +100,50 @@ const CoreCapabilities = () => {
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
   }, []);
 
+  const handleMouseEnter = (idx) => {
+    if (activeCard !== null) return;
+    setHoveredIndex(idx);
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      const serviceIds = ['01', '02', '03', '04'];
+      const serviceId = serviceIds[idx] || '01';
+      navigate(`/services#service-${serviceId}`);
+    }, 5000);
+  };
+
+  const handleMouseLeave = () => {
+    if (activeCard !== null) return;
+    setHoveredIndex(null);
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+  };
+
   const handleCardClick = (idx) => {
-    const isActivating = activeCard !== idx;
-
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
+    if (activeCard !== null) return;
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
     }
+    setHoveredIndex(null);
+    setActiveCard(idx);
 
-    if (isActivating) {
-      setActiveCard(idx);
-      setSelectedCap(capabilities[idx]);
-      setShowDetails(true);
-      setActiveIndex(idx); // Update the pagination dot highlight
-      setAnimKey(prev => prev + 1); // Force remount to replay animations
+    const serviceIds = ['01', '02', '03', '04'];
+    const serviceId = serviceIds[idx] || '01';
 
-      // Delay scrolling to let the sparkle burst animation finish (burst is 0.6s)
-      timeoutRef.current = setTimeout(() => {
-        detailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 800);
-    } else {
+    setTimeout(() => {
+      navigate(`/services#service-${serviceId}`);
       setActiveCard(null);
-      setShowDetails(false);
-      // We don't reset selectedCap here so the close animation can use the existing data
-    }
+    }, 1200);
   };
 
   return (
@@ -164,6 +175,13 @@ const CoreCapabilities = () => {
         .hide-scroll::-webkit-scrollbar {
           display: none;
         }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-4px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
       `}</style>
 
       <div className="max-w-screen-2xl mx-auto relative z-10">
@@ -183,17 +201,6 @@ const CoreCapabilities = () => {
                 Core Capabilities
               </h2>
             </div>
-            {/* <button
-              className="hidden md:flex items-center space-x-2 border border-gray-500 rounded-full py-2 px-6 hover:bg-white hover:text-black transition-all duration-1000 text-sm font-semibold"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                transitionDelay: '200ms'
-              }}
-            >
-              <span>Learn More</span>
-              <span>&rarr;</span>
-            </button> */}
           </div>
         </ScrollReveal>
 
@@ -211,9 +218,10 @@ const CoreCapabilities = () => {
                   <div
                     key={idx}
                     onClick={() => handleCardClick(idx)}
-                    className={`relative snap-center shrink-0 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer w-72 md:w-80 group
-                    ${isActive ? 'z-20' : 'z-10'}
-                  `}
+                    onMouseEnter={() => handleMouseEnter(idx)}
+                    onMouseLeave={handleMouseLeave}
+                    className={`relative snap-center shrink-0 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer w-72 md:w-80 group ${isActive ? 'z-20' : 'z-10'
+                      }`}
                     style={{
                       transitionDelay: `${isVisible ? idx * 150 : 0}ms`,
                       opacity: isVisible ? 1 : 0,
@@ -231,14 +239,10 @@ const CoreCapabilities = () => {
 
                     {/* The card itself */}
                     <div
-                      className={`
-                      bg-[#1C1F22] rounded-2xl overflow-hidden flex flex-col h-[400px] relative z-10
-                      transition-all duration-700 ease-out transform-gpu origin-center
-                      ${isActive
-                          ? 'border border-gray-600/30'
-                          : 'border-2 border-transparent hover:border-[#FF6B00]/50 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(255,107,0,0.15)]'
-                        }
-                    `}
+                      className={`bg-[#1C1F22] rounded-2xl overflow-hidden flex flex-col h-[400px] relative z-10 transition-all duration-700 ease-out transform-gpu origin-center ${isActive
+                        ? 'border border-gray-600/30'
+                        : 'border-2 border-transparent hover:border-[#FF6B00]/50 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(255,107,0,0.15)]'
+                        }`}
                       style={isActive ? {
                         transform: 'perspective(1000px) rotateY(-15deg) rotateX(10deg) scale(1.05)',
                         boxShadow: '10px 10px 0px #FF6B00',
@@ -264,12 +268,11 @@ const CoreCapabilities = () => {
                           <p className="text-[#FF6B00] text-xs font-bold uppercase mb-2">Premium</p>
                           <h3 className="text-xl font-bold mb-6">{cap.title}</h3>
                         </div>
-
                       </div>
 
                       {/* Expanding Glass Circle */}
                       <div
-                        className={`absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 w-[85%] aspect-square rounded-full glass-panel transition-all duration-1000 ease-out z-10
+                        className={`absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 w-[85%] aspect-square rounded-full glass-panel transition-all duration-1000 ease-out z-0
                       ${isActive ? 'scale-100 opacity-100' : 'scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100'}`}
                         style={{ transformOrigin: 'center center' }}
                       ></div>
@@ -292,6 +295,23 @@ const CoreCapabilities = () => {
                           </div>
                         </div>
                       </div>
+
+                      {/* Navigating message overlay when hovered */}
+                      {hoveredIndex === idx && (
+                        <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 z-30 text-[10px] text-white font-medium flex items-center gap-2 shadow-lg animate-fade-in">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00] animate-ping" />
+                          <span>Navigating to services in 5s...</span>
+                        </div>
+                      )}
+
+                      {/* 5-second progress bar at the bottom */}
+                      <div
+                        className="absolute bottom-0 left-0 h-1 bg-[#FF6B00] z-30"
+                        style={{
+                          width: hoveredIndex === idx ? '100%' : '0%',
+                          transition: hoveredIndex === idx ? 'width 5s linear' : 'none'
+                        }}
+                      />
                     </div>
                   </div>
                 );
