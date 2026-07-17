@@ -183,7 +183,7 @@ const CoreCapabilities = () => {
                 Core Capabilities
               </h2>
             </div>
-            <button
+            {/* <button
               className="hidden md:flex items-center space-x-2 border border-gray-500 rounded-full py-2 px-6 hover:bg-white hover:text-black transition-all duration-1000 text-sm font-semibold"
               style={{
                 opacity: isVisible ? 1 : 0,
@@ -193,7 +193,7 @@ const CoreCapabilities = () => {
             >
               <span>Learn More</span>
               <span>&rarr;</span>
-            </button>
+            </button> */}
           </div>
         </ScrollReveal>
 
@@ -264,10 +264,7 @@ const CoreCapabilities = () => {
                           <p className="text-[#FF6B00] text-xs font-bold uppercase mb-2">Premium</p>
                           <h3 className="text-xl font-bold mb-6">{cap.title}</h3>
                         </div>
-                        <div className="flex justify-between items-center border border-gray-600 rounded-full py-2 px-4 group-hover:border-[#FF6B00] transition-colors">
-                          <span className="text-sm text-gray-300">Read in more</span>
-                          <span className="text-gray-300">&rarr;</span>
-                        </div>
+
                       </div>
 
                       {/* Expanding Glass Circle */}
@@ -302,47 +299,22 @@ const CoreCapabilities = () => {
             </div>
 
             {/* Left Navigation Arrow */}
-            <button
+            {/* <button
               onClick={scrollLeft}
               className="flex absolute left-0 lg:-left-6 z-20 w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-[#ff6b00] items-center justify-center text-[#ff6b00] hover:bg-[#ff6b00]/10 transition-all bg-[#080808]"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
-            </button>
+            </button> */}
 
             {/* Right Navigation Arrow */}
-            <button
+            {/* <button
               onClick={scrollRight}
               className="flex absolute right-0 lg:-right-6 z-20 w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-[#ff6b00] items-center justify-center text-[#ff6b00] hover:bg-[#ff6b00]/10 transition-all bg-[#080808]"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
-            </button>
+            </button> */}
           </div>
         </ScrollReveal>
-
-        {/* Pagination Indicators */}
-        <ScrollReveal delay={0.4}>
-          <div className="flex items-center justify-center gap-2 mt-4 lg:mt-2">
-            {capabilities.map((_, idx) => (
-              <div
-                key={idx}
-                onClick={() => {
-                  if (scrollRef.current) {
-                    scrollRef.current.scrollTo({ left: idx * 350, behavior: 'smooth' });
-                    setActiveIndex(idx);
-                  }
-                }}
-                className={`cursor-pointer h-1.5 w-6 rounded-full transition-colors duration-300 ${activeIndex === idx ? 'bg-[#ff6b00]' : 'bg-white/30'}`}
-              ></div>
-            ))}
-          </div>
-        </ScrollReveal>
-
-        {/* Detailed Statistics Section */}
-        <div ref={detailsRef} className={`transition-all duration-700 ease-in-out overflow-hidden w-full ${showDetails ? 'max-h-[2500px] opacity-100 mt-8' : 'max-h-0 opacity-0 mt-0'}`}>
-          <div className="w-full min-h-screen flex flex-col justify-center">
-            <ActiveCardDetails key={animKey} cap={selectedCap} onClose={handleCloseDetails} />
-          </div>
-        </div>
       </div>
     </section>
   );

@@ -5,21 +5,21 @@ import { ScrollReveal } from './ScrollReveal';
 const industries = [
   {
     name: 'Commercial',
-    badge: '0',
+    badge: '',
     icon: (
       <svg className="w-8 h-8 text-[#FF6B00] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1v1H9V7zm5 0h1v1h-1V7zm-5 4h1v1H9v-1zm5 0h1v1h-1v-1zm-5 4h1v1H9v-1zm5 0h1v1h-1v-1z" /></svg>
     )
   },
   {
     name: 'Industrial',
-    badge: '2',
+    badge: '',
     icon: (
       <svg className="w-8 h-8 text-[#FF6B00] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1v1H9V7zm5 0h1v1h-1V7zm-5 4h1v1H9v-1zm5 0h1v1h-1v-1zm-5 4h1v1H9v-1zm5 0h1v1h-1v-1z" /></svg>
     )
   },
   {
     name: 'Infrastructure',
-    badge: '3',
+    badge: '',
     icon: (
       <svg className="w-8 h-8 text-[#FF6B00] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" /></svg>
     )
@@ -92,10 +92,10 @@ const IndustriesAndTech = () => {
               </ScrollReveal>
 
               <ScrollReveal delay={0.4}>
-                <button className="border border-[#FF6B00] text-[#FF6B00] hover:bg-[#FF6B00] hover:text-white px-6 py-3 rounded-md uppercase tracking-widest text-[10px] font-bold transition-colors duration-300 flex items-center gap-2 w-fit">
+                {/* <button className="border border-[#FF6B00] text-[#FF6B00] hover:bg-[#FF6B00] hover:text-white px-6 py-3 rounded-md uppercase tracking-widest text-[10px] font-bold transition-colors duration-300 flex items-center gap-2 w-fit">
                   Explore Our Capabilities
                   <span className="text-lg leading-none">&rarr;</span>
-                </button>
+                </button> */}
               </ScrollReveal>
             </div>
 
