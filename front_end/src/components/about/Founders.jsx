@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Linkedin = ({ size = 24, fill = "none", className = "" }) => (
   <svg
@@ -25,23 +25,25 @@ const foundersData = [
     id: 1,
     name: "Arun Mehta",
     role: "Co-Founder & CEO",
-    description: "Visionary leader with 20+ years of experience in engineering and manufacturing.",
-    image: "/images/founder_arun.png"
+    description:
+      "Visionary leader with 20+ years of experience in engineering and manufacturing.",
+    image: "/images/founder_arun.png",
   },
   {
     id: 2,
     name: "Neha Sharma",
     role: "Co-Founder & COO",
-    description: "Operations expert focused on process excellence and business growth.",
-    image: "/images/founder_neha.png"
+    description:
+      "Operations expert focused on process excellence and business growth.",
+    image: "/images/founder_neha.png",
   },
-  {
-    id: 3,
-    name: "Vikram Patel",
-    role: "Co-Founder & CTO",
-    description: "Technology strategist leading innovation and advanced manufacturing.",
-    image: "/images/founder_vikram.png"
-  }
+  // {
+  //   id: 3,
+  //   name: "Vikram Patel",
+  //   role: "Co-Founder & CTO",
+  //   description: "Technology strategist leading innovation and advanced manufacturing.",
+  //   image: "/images/founder_vikram.png"
+  // }
 ];
 
 export default function Founders() {
@@ -56,12 +58,15 @@ export default function Founders() {
     return () => clearInterval(interval);
   }, [isPaused]);
 
-  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % foundersData.length);
-  const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + foundersData.length) % foundersData.length);
+  const handleNext = () =>
+    setCurrentIndex((prev) => (prev + 1) % foundersData.length);
+  const handlePrev = () =>
+    setCurrentIndex(
+      (prev) => (prev - 1 + foundersData.length) % foundersData.length,
+    );
 
   return (
     <section className="w-full bg-[#ffffff] py-20 px-4 md:px-12 relative overflow-hidden">
-
       {/* Header */}
       <div className="text-center mb-16 relative z-10">
         <h4 className="text-orange-500 font-semibold tracking-wider text-sm uppercase mb-3">
@@ -73,7 +78,6 @@ export default function Founders() {
       </div>
 
       <div className="flex items-center justify-center gap-4 lg:gap-8 max-w-[1400px] mx-auto w-full relative z-10">
-
         {/* Left Arrow */}
         <button
           onClick={handlePrev}
@@ -89,7 +93,9 @@ export default function Founders() {
           onMouseLeave={() => setIsPaused(false)}
         >
           {foundersData.map((founder, index) => {
-            const offset = (index - currentIndex + foundersData.length) % foundersData.length;
+            const offset =
+              (index - currentIndex + foundersData.length) %
+              foundersData.length;
             const normalizedOffset = offset === 2 ? -1 : offset;
 
             let translation = "translate-x-[-50%]";
@@ -125,7 +131,6 @@ export default function Founders() {
                 className={`absolute top-0 left-1/2 w-full max-w-[340px] transition-all duration-700 ease-[cubic-bezier(0.25,0.8,0.25,1)] cursor-pointer ${translation} ${scale} ${zIndex} ${opacity} ${blur}`}
               >
                 <div className="w-full h-full bg-gradient-to-br from-[#181818] to-[#0a0a0a] rounded-3xl overflow-hidden border border-gray-800 relative group shadow-[0_15px_50px_rgba(0,0,0,0.5)]">
-
                   {/* Subtle orange glow at bottom left */}
                   <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-orange-500/20 blur-2xl rounded-full transition-opacity group-hover:bg-orange-500/40"></div>
 
@@ -136,14 +141,18 @@ export default function Founders() {
                       <img
                         src={founder.image}
                         alt={founder.name}
-                        className={`w-full h-full object-cover object-top transition-all duration-500 ${normalizedOffset === 0 ? 'grayscale-0' : 'grayscale'}`}
+                        className={`w-full h-full object-cover object-top transition-all duration-500 ${normalizedOffset === 0 ? "grayscale-0" : "grayscale"}`}
                       />
                     </div>
 
                     {/* Text Content */}
                     <div className="px-8 pb-8 flex flex-col justify-end relative z-20 w-full flex-grow">
-                      <h3 className="text-2xl font-bold text-white mb-1">{founder.name}</h3>
-                      <p className="text-orange-500 text-sm font-semibold mb-4">{founder.role}</p>
+                      <h3 className="text-2xl font-bold text-white mb-1">
+                        {founder.name}
+                      </h3>
+                      <p className="text-orange-500 text-sm font-semibold mb-4">
+                        {founder.role}
+                      </p>
                       <p className="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3">
                         {founder.description}
                       </p>
@@ -156,7 +165,6 @@ export default function Founders() {
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
             );
@@ -170,7 +178,6 @@ export default function Founders() {
         >
           <ChevronRight size={24} />
         </button>
-
       </div>
 
       {/* Pagination Dots */}
@@ -179,12 +186,14 @@ export default function Founders() {
           <div
             key={idx}
             onClick={() => setCurrentIndex(idx)}
-            className={`cursor-pointer transition-all duration-300 rounded-full ${idx === currentIndex ? "w-6 h-1.5 bg-orange-500" : "w-2 h-2 bg-gray-700 hover:bg-gray-500"
-              }`}
+            className={`cursor-pointer transition-all duration-300 rounded-full ${
+              idx === currentIndex
+                ? "w-6 h-1.5 bg-orange-500"
+                : "w-2 h-2 bg-gray-700 hover:bg-gray-500"
+            }`}
           ></div>
         ))}
       </div>
-
     </section>
   );
 }

@@ -254,8 +254,8 @@ const CoreCapabilities = () => {
                           alt={cap.title}
                           className="w-full h-full object-cover"
                         />
-                        {/* Dark gradient overlay so text is readable if no glass */}
-                        <div className={`absolute inset-0 bg-gradient-to-t from-[#1C1F22] via-[#1C1F22]/80 to-transparent transition-opacity duration-700 ${isActive ? 'opacity-0' : 'opacity-100'}`}></div>
+                        {/* Dark cover overlay for text readability */}
+                        <div className={`absolute inset-0 bg-black/40 transition-opacity duration-700 ${isActive ? 'opacity-0' : 'opacity-100'}`}></div>
                       </div>
 
                       {/* Normal content - fades out when active */}

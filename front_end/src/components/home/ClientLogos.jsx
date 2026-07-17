@@ -1,11 +1,32 @@
 import React, { useRef, useState, useEffect } from 'react';
-import logoJpeg from '../../assets/logo-Photoroom (1).png';
-import logoPng from '../../assets/logo-Photoroom.png';
-import jmLogo from '../../assets/JM Logo BGR.png';
-import shieldLogo from '../../assets/JM Logo Shield BGR.png';
+import atsChemLogo from '../../assets/ATSChem-logo.svg';
+import cumiLogo from '../../assets/CUMI-logo.svg';
+import essaeLogo from '../../assets/Essae-logo.svg';
+import ionExchangeLogo from '../../assets/IonExchange-logo.svg';
+import lwLogo from '../../assets/LW-logo.svg';
+import mersenLogo from '../../assets/Mersen-logo.png';
+import propelLogo from '../../assets/Propel-logo.svg';
+import rigidfabLogo from '../../assets/rigidfab-logo.jpeg';
+import southernLogo from '../../assets/Southern-logo.svg';
+import spLogo from '../../assets/SP-logo.svg';
+import terexLogo from '../../assets/Terex-logo-new.png';
+import wegLogo from '../../assets/Weg-logo-new.png';
 import { ScrollReveal } from './ScrollReveal';
 
-const logos = [logoJpeg, logoPng, jmLogo, shieldLogo, logoJpeg, logoPng];
+const logos = [
+  atsChemLogo,
+  cumiLogo,
+  essaeLogo,
+  ionExchangeLogo,
+  lwLogo,
+  mersenLogo,
+  propelLogo,
+  rigidfabLogo,
+  southernLogo,
+  spLogo,
+  terexLogo,
+  wegLogo
+];
 
 const LogoItem = ({ logo, index }) => {
   const [isCenter, setIsCenter] = useState(false);
@@ -37,10 +58,10 @@ const LogoItem = ({ logo, index }) => {
         ref={imgRef}
         src={logo} 
         alt={`Partner Logo ${index}`} 
-        className={`h-20 md:h-24 object-contain transition-all duration-500 cursor-pointer
+        className={`h-12 md:h-16 w-36 md:w-44 object-contain transition-all duration-500 cursor-pointer
           ${isCenter 
-            ? 'grayscale-0 opacity-100 scale-125 drop-shadow-[0_15px_30px_rgba(255,107,0,0.5)]' 
-            : 'filter grayscale opacity-40 hover:grayscale-0 hover:opacity-100 hover:scale-125 hover:drop-shadow-[0_15px_30px_rgba(255,107,0,0.5)]'
+            ? 'grayscale-0 opacity-100 scale-110 drop-shadow-[0_15px_30px_rgba(255,107,0,0.5)]' 
+            : 'filter grayscale opacity-40 hover:grayscale-0 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_15px_30px_rgba(255,107,0,0.5)]'
           }
         `}
       />
@@ -70,7 +91,7 @@ const ClientLogos = () => {
           100% { transform: translateX(-33.33%); }
         }
         .animate-marquee {
-          animation: marquee 30s linear infinite;
+          animation: marquee 45s linear infinite;
         }
         /* Optional: Pause the animation when hovered */
         .animate-marquee:hover {
