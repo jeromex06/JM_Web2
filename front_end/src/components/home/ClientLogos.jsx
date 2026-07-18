@@ -1,16 +1,16 @@
 import React, { useRef, useState, useEffect } from 'react';
-import atsChemLogo from '../../assets/ATSChem-logo.svg';
-import cumiLogo from '../../assets/CUMI-logo.svg';
-import essaeLogo from '../../assets/Essae-logo.svg';
-import ionExchangeLogo from '../../assets/IonExchange-logo.svg';
-import lwLogo from '../../assets/LW-logo.svg';
-import mersenLogo from '../../assets/Mersen-logo.png';
-import propelLogo from '../../assets/Propel-logo.svg';
-import rigidfabLogo from '../../assets/rigidfab-logo.jpeg';
-import southernLogo from '../../assets/Southern-logo.svg';
-import spLogo from '../../assets/SP-logo.svg';
-import terexLogo from '../../assets/Terex-logo-new.png';
-import wegLogo from '../../assets/Weg-logo-new.png';
+import atsChemLogo from '../../assets/ClientLogo/ATSChem-logo.svg';
+import cumiLogo from '../../assets/ClientLogo/CUMI-logo.svg';
+import essaeLogo from '../../assets/ClientLogo/Essae-logo.svg';
+import ionExchangeLogo from '../../assets/ClientLogo/IonExchange-logo.svg';
+import lwLogo from '../../assets/ClientLogo/LW-logo.svg';
+import mersenLogo from '../../assets/ClientLogo/Mersen-logo.png';
+import propelLogo from '../../assets/ClientLogo/Propel-logo.svg';
+import rigidfabLogo from '../../assets/ClientLogo/rigidfab-logo.jpeg';
+import southernLogo from '../../assets/ClientLogo/Southern-logo.svg';
+import spLogo from '../../assets/ClientLogo/SP-logo.svg';
+import terexLogo from '../../assets/ClientLogo/Terex-logo-new.png';
+import wegLogo from '../../assets/ClientLogo/Weg-logo-new.png';
 import { ScrollReveal } from './ScrollReveal';
 
 const logos = [

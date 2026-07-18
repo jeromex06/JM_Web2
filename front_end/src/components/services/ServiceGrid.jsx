@@ -4,46 +4,46 @@ import { useLenis } from 'lenis/react';
 import { GlassIcon } from './icons/GlassIcon';
 import {
   StructuralSteelIcon,
-  CraneErectionIcon,
-  PebFabricationIcon,
-  MezzanineFloorsIcon
+  ShotBlastingIcon,
+  IndustrialPaintingIcon,
+  FacadeSolutionsIcon
 } from './icons/ServiceIllustrations';
 
-import servicesFabrication from '../../assets/services_fabrication.png';
-import servicesErection from '../../assets/services_erection.png';
-import servicesPeb from '../../assets/services_peb.png';
-import servicesInfrastructure from '../../assets/services_infrastructure.png';
+import servicesFabrication from '../../assets/ServiceGrid/Steel Fabrication.png';
+import servicesErection from '../../assets/ServiceGrid/Shot Blasting.png';
+import servicesPeb from '../../assets/ServiceGrid/Industrial Painting & Coating.png';
+import servicesInfrastructure from '../../assets/ServiceGrid/Facade Solutions.png';
 
 const servicesList = [
   {
     id: '01',
-    title: 'STRUCTURAL STEEL FABRICATION',
-    description: 'Steel fabrication transforms raw metal into precise, functional structures through cutting, bending, welding, and assembly. Our skilled fabricators combine advanced machinery with hands-on craftsmanship to deliver components that meet exact specifications. From structural beams to custom brackets, every piece is engineered for strength, durability, and long-term performance. We work with a range of steel grades and finishes to suit industrial, commercial, and architectural applications. Quality control at every stage ensures the final product is ready for reliable, real-world use.',
+    title: 'STEEL FABRICATION',
+    description: 'We transform raw metal into precision-engineered components through expert cutting, bending, welding, and assembly. Using advanced machinery and strict quality control, we deliver custom structural steel solutions for industrial, commercial, and architectural projects.',
     icon: <StructuralSteelIcon />,
     image: servicesFabrication,
     checklist: []
   },
   {
     id: '02',
-    title: 'STRUCTURAL STEEL ERECTION',
-    description: 'On-site structural steel erection with experienced crews, coordinated with your project schedule for zero-delay integration.',
-    icon: <CraneErectionIcon />,
+    title: 'SHOT BLASTING',
+    description: 'We prepare metal surfaces using high-speed abrasive blasting to remove rust, scale, paint, and contaminants. The result is a clean, uniform finish that ensures stronger coating adhesion and lasting durability.',
+    icon: <ShotBlastingIcon />,
     image: servicesErection,
     checklist: []
   },
   {
     id: '03',
-    title: 'PEB SOLUTIONS',
-    description: 'Complete pre-engineered building fabrication and erection for industrial sheds, warehouses, and commercial structures.',
-    icon: <PebFabricationIcon />,
+    title: 'INDUSTRIAL PAINTING & COATINGS',
+    description: 'We provide protective and decorative coating solutions that shield metal structures from corrosion and wear. Our industrial-grade paints and precise application deliver lasting durability and a superior finish.',
+    icon: <IndustrialPaintingIcon />,
     image: servicesPeb,
     checklist: []
   },
   {
     id: '04',
-    title: 'INDUSTRIAL INFRASTRUCTURE',
-    description: 'Custom solutions including mezzanine floors, machinery platforms, barricading, PUF & deck sheet installation for complete industrial support.',
-    icon: <MezzanineFloorsIcon />,
+    title: 'FACADE SOLUTIONS',
+    description: 'We design and install architectural facades that blend structural strength with visual appeal. Our solutions ensure weather resistance and a refined, professional exterior finish.',
+    icon: <FacadeSolutionsIcon />,
     image: servicesInfrastructure,
     checklist: []
   }

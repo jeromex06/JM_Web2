@@ -1,26 +1,28 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import steelImage from '../../assets/steel_fabrication.png';
 import ActiveCardDetails from './ActiveCardDetails';
 import { ScrollReveal } from './ScrollReveal';
-import pvr_coating from "../../assets/pvr-coating.jpeg"
+import imgSteelFabrication from '../../assets/CoreCapabilities/Steel Fabrication.png';
+import imgShotBlasting from '../../assets/CoreCapabilities/Shot Blasting.png';
+import imgIndustrialPainting from '../../assets/CoreCapabilities/Industrial Painting & Coating.png';
+import imgFacadeSolutions from '../../assets/CoreCapabilities/Facade Solutions.png';
 
 const capabilities = [
   {
     title: 'Steel Fabrication',
-    image: steelImage,
+    image: imgSteelFabrication,
   },
   {
     title: 'Shot Blasting',
-    image: pvr_coating,
+    image: imgShotBlasting,
   },
   {
     title: 'Industrial Painting and Coating',
-    image: steelImage,
+    image: imgIndustrialPainting,
   },
   {
-    title: 'Facade ',
-    image: steelImage,
+    title: 'Facade Solutions',
+    image: imgFacadeSolutions,
   },
 
 ];

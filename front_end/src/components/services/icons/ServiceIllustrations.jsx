@@ -195,3 +195,68 @@ export const MachineryPlatformsIcon = () => (
         </g>
     </svg>
 );
+
+export const ShotBlastingIcon = () => (
+    <svg {...svgProps}>
+        <g className="main fade-fill">
+            {/* Metal gear/part */}
+            <circle cx="60" cy="60" r="20" fill="none" stroke={primary} strokeWidth="6" />
+            <circle cx="60" cy="60" r="8" fill="none" stroke={secondary} strokeWidth="4" />
+            <path d="M60 35v5M60 80v5M35 60h5M80 60h5M42 42l4 4M74 74l4 4M42 78l4-4M74 42l4 4" stroke={primary} strokeWidth="4" />
+        </g>
+        <g className="highlight" stroke={accent} strokeWidth="3" fill="none" strokeLinecap="round">
+            {/* Blasting nozzle */}
+            <path className="draw-stroke" d="M10 20l20 20" strokeWidth="6" />
+            <path className="draw-stroke" d="M25 15l10 10" strokeWidth="4" />
+            {/* Particles hitting the part */}
+            <path className="draw-stroke" d="M35 45l10 5" strokeDasharray="2 4" />
+            <path className="draw-stroke" d="M40 35l5 10" strokeDasharray="2 4" />
+            <circle cx="45" cy="45" r="2" fill={accent} className="draw-stroke" />
+            <circle cx="50" cy="38" r="1.5" fill={accent} className="draw-stroke" />
+            <circle cx="38" cy="50" r="2" fill={accent} className="draw-stroke" />
+        </g>
+    </svg>
+);
+
+export const IndustrialPaintingIcon = () => (
+    <svg {...svgProps}>
+        <g className="main fade-fill">
+            {/* I-beam being painted */}
+            <path d="M20 70h60v10H20z" fill={primary} />
+            <path d="M40 30h20v40H40z" fill={secondary} />
+            <path d="M30 30h40v10H30z" fill={primary} />
+        </g>
+        <g className="highlight" stroke={accent} strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round">
+            {/* Paint roller */}
+            <path className="draw-stroke" d="M75 40v20" strokeWidth="8" />
+            <path className="draw-stroke" d="M75 50h10v20" />
+            {/* Paint stroke */}
+            <path className="draw-stroke" d="M50 40h20" strokeWidth="6" stroke={accent} opacity="0.8" />
+            <path className="draw-stroke" d="M50 50h15" strokeWidth="6" stroke={accent} opacity="0.8" />
+        </g>
+    </svg>
+);
+
+export const FacadeSolutionsIcon = () => (
+    <svg {...svgProps}>
+        <g className="main fade-fill" fill="none" stroke={primary} strokeWidth="4">
+            {/* Building structure */}
+            <path d="M20 20h60v70H20z" />
+            {/* Grid lines */}
+            <path d="M40 20v70" stroke={secondary} strokeWidth="2" />
+            <path d="M60 20v70" stroke={secondary} strokeWidth="2" />
+            <path d="M20 40h60" stroke={secondary} strokeWidth="2" />
+            <path d="M20 60h60" stroke={secondary} strokeWidth="2" />
+            <path d="M20 80h60" stroke={secondary} strokeWidth="2" />
+        </g>
+        <g className="highlight" fill="none" stroke={accent} strokeWidth="3">
+            {/* Highlighted glass panels */}
+            <path className="draw-stroke" d="M40 40h20v20H40z" fill={`${accent}33`} />
+            <path className="draw-stroke" d="M20 60h20v20H20z" fill={`${accent}33`} />
+            <path className="draw-stroke" d="M60 20h20v20H60z" fill={`${accent}33`} />
+            {/* Sun reflection / shine */}
+            <path className="draw-stroke" d="M45 55l10-10" strokeWidth="2" />
+            <path className="draw-stroke" d="M52 57l3-3" strokeWidth="2" />
+        </g>
+    </svg>
+);
