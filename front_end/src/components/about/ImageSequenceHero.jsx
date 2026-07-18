@@ -6,7 +6,7 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(ScrollTrigger);
 
 // Use Vite's glob import to get all images
-const modules = import.meta.glob('../../assets/frames1.1/*.jpg', { eager: true });
+const modules = import.meta.glob('../../assets/About Hero ISA/*.jpg', { eager: true });
 const images = Object.keys(modules).sort().map((key) => modules[key].default || modules[key]);
 
 export default function ImageSequenceHero() {

@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const frame1Glob = import.meta.glob('../../assets/Logo ISA/*.jpg', { eager: true });
 const frame1Urls = Object.values(frame1Glob).map(mod => mod.default || mod);
 
-const frameGlob = import.meta.glob('../../assets/frame/*.jpg', { eager: true });
+const frameGlob = import.meta.glob('../../assets/Home Hero ISA/*.jpg', { eager: true });
 const frameUrls = Object.values(frameGlob).map(mod => mod.default || mod);
 
 const contents = [
