@@ -305,7 +305,7 @@ const AboutSection = () => {
             </button>
           </div>
 
-          <div className={`relative w-full lg:w-[55%] h-[500px] lg:h-[600px] overflow-hidden group ${isPlaying ? 'z-[70]' : 'z-10'} transition-all duration-700`}>
+          <div className={`relative w-full lg:w-[55%] h-[350px] sm:h-[400px] lg:h-[600px] overflow-hidden group ${isPlaying ? 'z-[70]' : 'z-10'} transition-all duration-700`}>
             <div
               className="absolute inset-0 w-full h-full overflow-hidden"
               style={{
@@ -337,7 +337,7 @@ const AboutSection = () => {
                   }
                 }
               }}
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[100] bg-black/50 hover:bg-black/70 text-white p-5 rounded-full backdrop-blur-md transition-all duration-300 flex items-center justify-center border border-white/20 cursor-pointer shadow-xl group-hover:opacity-100"
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[100] bg-black/50 hover:bg-black/70 text-white p-4 md:p-5 rounded-full backdrop-blur-md transition-all duration-300 flex items-center justify-center border border-white/20 cursor-pointer shadow-xl group-hover:opacity-100"
               aria-label={isPlaying ? "Pause video" : "Play video"}
             >
               {isPlaying ? (
@@ -363,7 +363,7 @@ const AboutSection = () => {
                   videoRef.current.muted = newMutedState;
                 }
               }}
-              className="absolute top-6 right-6 z-[100] bg-black/70 hover:bg-black text-white p-3 rounded-full backdrop-blur-md transition-all duration-300 flex items-center justify-center border border-white/20 cursor-pointer shadow-lg"
+              className="absolute top-4 right-4 md:top-6 md:right-6 z-[100] bg-black/70 hover:bg-black text-white p-2.5 md:p-3 rounded-full backdrop-blur-md transition-all duration-300 flex items-center justify-center border border-white/20 cursor-pointer shadow-lg"
               aria-label={isMuted ? "Unmute video" : "Mute video"}
             >
               {isMuted ? (

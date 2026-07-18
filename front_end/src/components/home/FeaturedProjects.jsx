@@ -148,7 +148,7 @@ const FeaturedProjects = () => {
           <div
             key={project.id}
             ref={addToRefs}
-            className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-[#ffffff]"
+            className="relative w-full h-dvh overflow-hidden flex items-center justify-center bg-[#ffffff]"
           >
             {/* The ball that scales up to become the background */}
             <div className="falling-ball absolute left-1/2 top-1/2 w-[50px] h-[50px] -ml-[25px] -mt-[25px] rounded-full bg-[#ff6b00] z-10 shadow-[0_0_20px_rgba(255,107,0,0.5)]"></div>
@@ -157,7 +157,7 @@ const FeaturedProjects = () => {
             <div className="inner-content relative z-20 w-full h-full max-w-[1600px] mx-auto px-4 md:px-10 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
 
               {/* Image Section */}
-              <div className={`project-img-container w-full lg:w-3/5 h-[40vh] lg:h-[70vh] rounded-[30px] overflow-hidden relative shadow-2xl bg-[#111111] ${idx % 2 !== 0 ? 'lg:order-2' : ''}`}>
+              <div className={`project-img-container w-full lg:w-3/5 h-[40dvh] lg:h-[70dvh] rounded-[30px] overflow-hidden relative shadow-2xl bg-[#111111] ${idx % 2 !== 0 ? 'lg:order-2' : ''}`}>
                 <img
                   src={steelImage}
                   alt={project.title}

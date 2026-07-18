@@ -147,7 +147,7 @@ export default function ImageSequenceHero() {
   }, { scope: containerRef, dependencies: [imagesLoaded, loadedImages] });
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen bg-[#050B16] overflow-hidden">
+    <div ref={containerRef} className="relative w-full h-dvh bg-[#050B16] overflow-hidden">
       <canvas
         ref={canvasRef}
         className="absolute top-0 left-0 w-full h-full object-cover"
@@ -156,7 +156,7 @@ export default function ImageSequenceHero() {
       {/* Initial Overlay Content */}
       <div ref={textRef} className="absolute inset-y-0 left-[10%] flex flex-col justify-center pointer-events-none z-10">
         <div className="w-12 h-1 bg-[#3BA7FF] mb-6"></div>
-        <h2 className="text-white text-5xl md:text-7xl font-bold tracking-tight uppercase leading-[1.1] font-sans drop-shadow-lg">
+        <h2 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight uppercase leading-[1.1] font-sans drop-shadow-lg">
           Precision <br />
           Sheet Metal <br />
           & Facades
@@ -167,7 +167,7 @@ export default function ImageSequenceHero() {
       {/* Text 2 */}
       <div ref={text2Ref} className="absolute inset-y-0 left-[10%] flex flex-col justify-center pointer-events-none z-10 opacity-0">
         <div className="w-12 h-1 bg-[#3BA7FF] mb-6"></div>
-        <h2 className="text-white text-5xl md:text-6xl font-bold tracking-tight uppercase leading-[1.1] font-sans mb-6 drop-shadow-lg">
+        <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight uppercase leading-[1.1] font-sans mb-6 drop-shadow-lg">
           Standard <br />
           Fabrication
         </h2>
@@ -181,7 +181,7 @@ export default function ImageSequenceHero() {
       {/* Text 3 */}
       <div ref={text3Ref} className="absolute top-[35%] left-[10%] flex flex-col pointer-events-none z-10 opacity-0">
         <div className="w-12 h-1 bg-[#3BA7FF] mb-6"></div>
-        <h2 className="text-white text-5xl md:text-6xl font-bold tracking-tight uppercase leading-[1.1] font-sans mb-6 drop-shadow-lg">
+        <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight uppercase leading-[1.1] font-sans mb-6 drop-shadow-lg">
           Premium Coating <br />
           & Finishing
         </h2>

@@ -397,7 +397,7 @@ export default function ExperienceManager() {
   const containerRef = useRef();
 
   return (
-    <section ref={containerRef} className="relative w-full h-screen bg-black overflow-hidden font-sans">
+    <section ref={containerRef} className="relative w-full h-dvh bg-black overflow-hidden font-sans">
 
       {/* Background Image Container (Animated in GSAP) */}
       <div

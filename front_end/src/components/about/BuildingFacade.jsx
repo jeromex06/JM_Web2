@@ -358,7 +358,7 @@ class CanvasErrorBoundary extends React.Component {
 // ─── Main Export ───
 export default function BuildingFacade() {
   return (
-    <section className="relative w-full h-[100vh] min-h-[900px] overflow-hidden border-b border-white/5 flex items-center">
+    <section className="relative w-full h-[100dvh] min-h-[900px] overflow-hidden border-b border-white/5 flex items-center">
       {/* Background Image Container */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center"

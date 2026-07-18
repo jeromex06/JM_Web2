@@ -110,9 +110,9 @@ const Hero = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} id="home" className="relative w-full h-[400vh] bg-black">
+    <section ref={containerRef} id="home" className="relative w-full h-[400dvh] bg-black">
       {/* Sticky Container */}
-      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex flex-col justify-center items-center">
+      <div className="sticky top-0 left-0 w-full h-dvh overflow-hidden flex flex-col justify-center items-center">
         <canvas
           ref={canvasRef}
           width={1920}
@@ -123,15 +123,15 @@ const Hero = () => {
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-4">
           <div className="flex flex-col items-center justify-center text-center px-8 py-16 md:px-16 md:py-24 w-full max-w-4xl">
             <div className={`transition-opacity duration-700 ease-in-out flex flex-col items-center text-center ${showText && !isFinished ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-[0.1em] uppercase mb-6 text-[#D4AF37] drop-shadow-lg">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.1em] uppercase mb-6 text-[#D4AF37] drop-shadow-lg">
                 {contents[activeTextIndex]?.heading}
               </h1>
-              <p className="text-xl md:text-3xl font-light tracking-wide text-white drop-shadow-md">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light tracking-wide text-white drop-shadow-md">
                 {contents[activeTextIndex]?.paragraph}
               </p>
             </div>
 
-            <div className="absolute bottom-12 animate-bounce text-white/50 hidden md:block">
+            <div className="absolute bottom-8 md:bottom-12 animate-bounce text-white/50 block">
               <span className="text-xs uppercase tracking-widest block mb-2">Scroll</span>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mx-auto">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>

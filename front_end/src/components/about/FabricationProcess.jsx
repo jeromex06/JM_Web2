@@ -680,7 +680,7 @@ export const CNCMachine = ({ disableAnimations = false, hideEnvironment = false 
 // ─────────────────────────────────────────────────────────────────
 export default function FabricationProcess() {
   return (
-    <section className="relative w-full h-[100vh] min-h-[700px] bg-[#02050A] overflow-hidden border-b border-white/5">
+    <section className="relative w-full h-[100dvh] min-h-[700px] bg-[#02050A] overflow-hidden border-b border-white/5">
       {/* ── UI Overlay Left ── */}
       <div className="absolute inset-y-0 left-0 z-10 pointer-events-none flex flex-col justify-center px-16 max-w-[700px]">
         {/* Top cyan bar */}

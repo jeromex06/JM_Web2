@@ -28,7 +28,7 @@ function ScrollToTop() {
 
 // A simple loading fallback
 const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-black">
+  <div className="min-h-dvh flex items-center justify-center bg-black">
     <div className="w-8 h-8 border-2 border-[#ff6b00] border-t-transparent rounded-full animate-spin"></div>
   </div>
 );
@@ -85,7 +85,7 @@ function App() {
     <>
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <ReactLenis root>
-        <div className="min-h-screen bg-black font-sans">
+        <div className="min-h-dvh bg-black font-sans">
           <ScrollToTop />
           <Header />
           <Suspense fallback={<PageLoader />}>

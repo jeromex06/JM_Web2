@@ -42,7 +42,7 @@ const ProductHero = () => {
   }
 
   return (
-    <div className="relative w-full min-h-[90vh] md:min-h-screen bg-[#070707] overflow-hidden flex flex-col md:flex-row items-center font-sans">
+    <div className="relative w-full min-h-[90dvh] md:min-h-dvh bg-[#070707] overflow-hidden flex flex-col md:flex-row items-center font-sans">
 
       {/* Background Pattern on the Left */}
       <div className="absolute top-0 left-0 w-[50%] h-full pointer-events-none opacity-20" style={{
@@ -73,7 +73,7 @@ const ProductHero = () => {
       </div>
 
       {/* Right Image Area */}
-      <div className="w-full md:w-[50%] lg:w-[55%] h-[40vh] md:h-screen relative mt-4 md:mt-0 md:absolute md:right-0">
+      <div className="w-full md:w-[50%] lg:w-[55%] h-[40dvh] md:h-dvh relative mt-4 md:mt-0 md:absolute md:right-0">
 
         {/* Gradient Overlay for blending */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-transparent z-10 md:hidden"></div>

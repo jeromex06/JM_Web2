@@ -8,7 +8,7 @@ import AboutCTA from '../components/about/AboutCTA';
 
 export default function About() {
   return (
-    <div className="bg-black min-h-screen text-white">
+    <div className="bg-black min-h-dvh text-white">
       <ImageSequenceHero />
       <VisionMission />
       <Founders />

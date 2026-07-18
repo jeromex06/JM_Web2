@@ -6,7 +6,7 @@ import ServiceGrid from '../components/services/ServiceGrid';
 import ManufacturingProcess from '../components/about/ManufacturingProcess';
 const Services = () => {
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-dvh">
       <ServiceHero />
       <ServiceTicker />
       <ServiceStats />

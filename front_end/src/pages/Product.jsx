@@ -4,7 +4,7 @@ import ProductRange from '../components/product/ProductRange';
 
 const Product = () => {
   return (
-    <div className="min-h-screen bg-[#070707]">
+    <div className="min-h-dvh bg-[#070707]">
       <ProductHero />
       <ProductRange />
     </div>

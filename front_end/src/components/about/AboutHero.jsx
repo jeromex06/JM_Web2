@@ -508,7 +508,7 @@ export default function AboutHero() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full min-h-screen bg-[#050B16] text-white flex items-center justify-center overflow-hidden py-24 px-4 sm:px-6 md:px-12 lg:px-24"
+      className="relative w-full min-h-dvh bg-[#050B16] text-white flex items-center justify-center overflow-hidden py-24 px-4 sm:px-6 md:px-12 lg:px-24"
     >
       {/* Background Subtle Tech Grid */}
       <div

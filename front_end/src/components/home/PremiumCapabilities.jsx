@@ -109,7 +109,7 @@ const PremiumCapabilities = () => {
   }, []);
 
   return (
-    <section id="premium" className="relative w-full h-screen bg-[#0a0a0c] overflow-hidden flex flex-col justify-center">
+    <section id="premium" className="relative w-full h-dvh bg-[#0a0a0c] overflow-hidden flex flex-col justify-center">
       <canvas
         ref={canvasRef}
         width={1920}

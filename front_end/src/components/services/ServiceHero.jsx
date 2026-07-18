@@ -5,7 +5,7 @@ import ImageSequence from '../common/ImageSequence';
 const ServiceHero = () => {
   return (
     <div
-      className="relative w-full h-[80vh] min-h-[600px] flex flex-col lg:flex-row bg-[#111315] overflow-hidden"
+      className="relative w-full h-[80dvh] min-h-[600px] flex flex-col lg:flex-row bg-[#111315] overflow-hidden"
     >
       {/* Left Content (50%) */}
       <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 md:px-12 lg:px-24 z-10 relative">
