@@ -25,6 +25,7 @@ export default function LightBulbSVG({ isHovered, reducedMotion }) {
       
       // Keep filament fully drawn initially
       gsap.set(filamentRef.current, { drawSVG: "100%" });
+      gsap.set(raysRef.current, { opacity: 0, scale: 0.8 });
 
     }, svgRef);
 
@@ -79,7 +80,7 @@ export default function LightBulbSVG({ isHovered, reducedMotion }) {
       </defs>
 
       {/* Rays */}
-      <g stroke="#FF7A00" strokeWidth="2" strokeLinecap="round" opacity="0">
+      <g stroke="#FF7A00" strokeWidth="2" strokeLinecap="round">
         <line ref={el => raysRef.current[0] = el} x1="50" y1="10" x2="50" y2="4" />
         <line ref={el => raysRef.current[1] = el} x1="75" y1="20" x2="81" y2="14" />
         <line ref={el => raysRef.current[2] = el} x1="90" y1="45" x2="96" y2="45" />
