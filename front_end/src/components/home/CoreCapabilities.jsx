@@ -196,9 +196,6 @@ const CoreCapabilities = () => {
                 transform: isVisible ? 'translateY(0)' : 'translateY(30px)'
               }}
             >
-              <h4 className="text-[#FF6B00] text-sm font-bold uppercase tracking-wider mb-2">
-                Lenis Smooth Scroll
-              </h4>
               <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-wide">
                 Core Capabilities
               </h2>

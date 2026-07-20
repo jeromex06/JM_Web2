@@ -1,103 +1,109 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight } from 'lucide-react';
-
-const heroImages = [
-  '/hero-building.png',
-  'https://images.unsplash.com/photo-1541888049103-9d4133496035?auto=format&fit=crop&q=80&w=1920',
-  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
-  'https://images.unsplash.com/photo-1509391366360-128227b49463?auto=format&fit=crop&q=80&w=1920'
-];
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import ShapeGrid from '../ShapeGrid';
 
 const ProductHero = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [animationState, setAnimationState] = useState('idle');
+  const containerRef = useRef(null);
+  const textRef = useRef(null);
+  const imageRef = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimationState('flipping-out');
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
 
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % heroImages.length);
-        setAnimationState('snap-back');
+      // Initial image scale down and fade in
+      tl.fromTo(imageRef.current,
+        { scale: 1.2, opacity: 0 },
+        { scale: 1, opacity: 0.6, duration: 2, ease: "power3.out" }
+      );
 
-        // Small delay to allow the browser to register the snap-back before animating to idle
-        setTimeout(() => {
-          setAnimationState('idle');
-        }, 50);
-      }, 600); // Time it takes to flip out
+      // Text reveal
+      const words = textRef.current.querySelectorAll('.word');
+      tl.fromTo(words,
+        { y: 100, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "back.out(1.7)" },
+        "-=1.5"
+      );
 
-    }, 5000); // Rotate image every 5 seconds
+      // Line and subtext reveal
+      tl.fromTo('.subtext-container',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
+        "-=0.8"
+      );
 
-    return () => clearInterval(interval);
+      // Parallax effect on scroll
+      gsap.to(imageRef.current, {
+        y: '30%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        }
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
-  let transform = 'perspective(1000px) rotateY(0deg) scale(1)';
-  let transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-
-  if (animationState === 'flipping-out') {
-    transform = 'perspective(1000px) rotateY(90deg) scale(0.9)';
-  } else if (animationState === 'snap-back') {
-    transform = 'perspective(1000px) rotateY(-90deg) scale(0.9)';
-    transition = 'none';
-  }
+  // Split text helper
+  const splitText = (text) => {
+    return text.split(' ').map((word, index) => (
+      <span key={index} className="inline-block overflow-hidden mr-3">
+        <span className="word inline-block font-bold text-white leading-tight">
+          {word === 'Facades' ? <span className="text-[#ff5c00]">{word}</span> : word}
+        </span>
+      </span>
+    ));
+  };
 
   return (
-    <div className="relative w-full min-h-[90dvh] md:min-h-dvh bg-[#070707] overflow-hidden flex flex-col md:flex-row items-center font-sans">
+    <div ref={containerRef} className="relative w-full h-dvh bg-[#070707] overflow-hidden flex flex-col justify-center font-sans">
+      
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0 bg-[#070707]">
+        <img 
+          ref={imageRef}
+          src="/assets/hero_facade_1784535377394.png" 
+          alt="Architectural Facade" 
+          className="w-full h-full object-cover opacity-75"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-[#070707]/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#070707]/80 via-[#070707]/30 to-transparent"></div>
+      </div>
 
-      {/* Background Pattern on the Left */}
-      <div className="absolute top-0 left-0 w-[50%] h-full pointer-events-none opacity-20" style={{
-        background: 'radial-gradient(circle at 0% 50%, rgba(255,255,255,0.05) 0%, transparent 50%), repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.05) 10px, rgba(255, 255, 255, 0.05) 11px)'
-      }} />
+      {/* Background Shape Grid */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <ShapeGrid 
+          speed={0} 
+          squareSize={60}
+          direction='diagonal'
+          borderColor='rgba(255, 255, 255, 0.15)'
+          hoverFillColor='rgba(255, 92, 0, 0.4)'
+          shape='triangle'
+          hoverTrailAmount={5}
+        />
+      </div>
 
-      {/* Left Content Area */}
-      <div className="w-full md:w-[50%] lg:w-[45%] h-full flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-24 z-10 relative pt-20 pb-12 md:py-0">
-
-        {/* Top Tagline */}
-        <div className="flex items-center space-x-4 mb-6">
-          <span className="text-[#ff5c00] font-bold tracking-widest text-xs sm:text-sm uppercase">Our Products</span>
-          <div className="h-[2px] w-12 bg-[#ff5c00]"></div>
+      {/* Main Content */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 mt-20">
+        <div className="flex items-center space-x-4 mb-6 subtext-container">
+          <div className="w-12 h-[2px] bg-[#ff5c00]"></div>
+          <span className="text-[#ff5c00] font-bold tracking-widest text-sm uppercase">Engineered for Excellence</span>
         </div>
 
-        {/* Main Heading */}
-        <h1 className="text-[50px] sm:text-6xl md:text-7xl lg:text-[60px] font-bold text-white leading-[1.05] mb-8">
-          Transforming raw materials into <br />
-          <span className="text-[#ff5c00]">engineered excellence</span>
+        <h1 ref={textRef} className="text-5xl sm:text-7xl md:text-8xl lg:text-[100px] mb-8">
+          {splitText("Premium Sheet Metal Facades")}
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-gray-400 text-base sm:text-lg lg:text-xl max-w-md mb-10 leading-relaxed font-light">
-          Behind every great innovation is a material that made it possible — and an engineer who saw that possibility first
-        </p>
-
-
-      </div>
-
-      {/* Right Image Area */}
-      <div className="w-full md:w-[50%] lg:w-[55%] h-[40dvh] md:h-dvh relative mt-4 md:mt-0 md:absolute md:right-0">
-
-        {/* Gradient Overlay for blending */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-transparent z-10 md:hidden"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#070707] via-transparent to-transparent z-10 hidden md:block pointer-events-none"></div>
-
-        {/* Slanted Image Container */}
-        <div className="w-full h-full relative md:-ml-12" style={{
-          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 20% 100%)'
-        }}>
-          <img
-            src={heroImages[currentIndex]}
-            alt="Architectural glass building"
-            className="w-full h-full object-cover object-center"
-            style={{
-              transform,
-              transition
-            }}
-          />
-          {/* Subtle orange accent glow on image */}
-          <div className="absolute inset-0 bg-[#ff5c00]/5 mix-blend-overlay pointer-events-none"></div>
+        <div className="subtext-container max-w-2xl">
+          <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
+            We deliver state-of-the-art architectural facade systems that combine striking aesthetics with unmatched structural integrity and energy efficiency.
+          </p>
         </div>
-
       </div>
-
     </div>
   );
 };

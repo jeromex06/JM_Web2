@@ -113,7 +113,8 @@ const IndustriesAndTech = () => {
                   prefix="Timeline 1_"
                   startFrame={86400}
                   endFrame={86639}
-                  fps={24}
+                  fps={12}
+                  step={4}
                   className="w-full h-full opacity-80"
                   onFrameChange={handleFrameChange}
                 />
